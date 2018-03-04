@@ -10,13 +10,11 @@ using System.Threading.Tasks;
 
 namespace JCDLibrary
 {
-    class VelibsRetriver : IVelibsRetriever
+    class VelibsRetriever : IVelibsRetriever
     {
 
         JArray jsonArrayCities;
         JArray jsonArrayStation;
-
-        ArrayList stations;
 
         public string getCities()
         {
@@ -59,6 +57,8 @@ namespace JCDLibrary
             data = reader.ReadToEnd();
             jsonArrayStation = JArray.Parse(data);
 
+            ArrayList stations = new ArrayList();
+
             foreach (JObject item in jsonArrayStation)
             {
 
@@ -79,7 +79,7 @@ namespace JCDLibrary
             foreach (Station item in stations)
             {
 
-                result += item.ToString() + "\n";
+                result += item.ToString() + "\n\n";
 
             }
 
