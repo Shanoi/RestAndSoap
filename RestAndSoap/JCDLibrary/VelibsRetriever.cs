@@ -47,44 +47,58 @@ namespace JCDLibrary
 
             WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
 
-            WebResponse response = request.GetResponse();
-
-            // Get the stream containing content returned by the server.
-            Stream dataStream = response.GetResponseStream();
-            // Open the stream using a StreamReader for easy access.
-            StreamReader reader = new StreamReader(dataStream);
-            // Read the content.
-            data = reader.ReadToEnd();
-            jsonArrayStation = JArray.Parse(data);
-
-            ArrayList stations = new ArrayList();
-
-            foreach (JObject item in jsonArrayStation)
+            try
             {
+                WebResponse response = request.GetResponse();
 
-                string name = (String)item.GetValue("name");
-                if (name.ToUpper().Contains(station.ToUpper()))
+                // Get the stream containing content returned by the server.
+                Stream dataStream = response.GetResponseStream();
+                // Open the stream using a StreamReader for easy access.
+                StreamReader reader = new StreamReader(dataStream);
+                // Read the content.
+                data = reader.ReadToEnd();
+                jsonArrayStation = JArray.Parse(data);
+
+                ArrayList stations = new ArrayList();
+
+                foreach (JObject item in jsonArrayStation)
                 {
-                    stations.Add(new Station((String)item.GetValue("name"),
-                        (String)item.GetValue("address"),
-                        (String)item.GetValue("status"),
-                        (int)item.GetValue("available_bike_stands"),
-                        (int)item.GetValue("available_bikes")));
+
+                    string name = (String)item.GetValue("name");
+                    if (name.ToUpper().Contains(station.ToUpper()))
+                    {
+                        stations.Add(new Station((String)item.GetValue("name"),
+                            (String)item.GetValue("address"),
+                            (String)item.GetValue("status"),
+                            (int)item.GetValue("available_bike_stands"),
+                            (int)item.GetValue("available_bikes")));
+
+                    }
+                }
+
+                string result = "";
+
+                if (stations.Count == 0)
+                {
+                    return "No station to display";
+                }
+
+                foreach (Station item in stations)
+                {
+
+                    result += item.ToString() + "\n\n";
 
                 }
+
+                return result;
+
             }
-
-            string result = "";
-
-            foreach (Station item in stations)
+            catch (Exception)
             {
 
-                result += item.ToString() + "\n\n";
-
+                return "Wrong city name";
             }
-
-            return result;
-
+            
         }
 
     }

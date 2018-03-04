@@ -10,6 +10,8 @@ namespace ClientConsole
     class Program
     {
 
+        private static string ERROR_MESSAGE = "Wrong input. Type \"help\" for the list of commands\n";
+
         static void Main(string[] args)
         {
             VelibsRetrieverClient client = new VelibsRetrieverClient();
@@ -55,7 +57,7 @@ namespace ClientConsole
                             break;
 
                         default:
-                            Console.WriteLine("Wrong input. Type help for the list of commands\n");
+                            Console.WriteLine(ERROR_MESSAGE);
                             break;
 
                     }
@@ -79,7 +81,7 @@ namespace ClientConsole
 
 
                         default:
-                            Console.WriteLine("Wrong input. Type help for the list of commands\n");
+                            Console.WriteLine(ERROR_MESSAGE);
                             break;
 
                     }
@@ -90,13 +92,14 @@ namespace ClientConsole
                     {
                         case "station":
 
-                            Console.WriteLine(client.getDataFromCity(s.Split(' ')[2], s.Split(' ')[1]));
+                            city = s.Split(' ')[2];
+                            Console.WriteLine(client.getDataFromCity(city, s.Split(' ')[1]));
 
                             break;
 
 
                         default:
-                            Console.WriteLine("Wrong input. Type help for the list of commands\n");
+                            Console.WriteLine(ERROR_MESSAGE);
                             break;
 
                     }
@@ -104,7 +107,7 @@ namespace ClientConsole
                 else
                 {
 
-                    Console.WriteLine("Wrong input arguments. Type help for the list of commands\n");
+                    Console.WriteLine("Wrong input arguments. Type \"help\" for the list of commands\n");
 
                 }
 
