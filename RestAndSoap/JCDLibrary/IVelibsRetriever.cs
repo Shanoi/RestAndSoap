@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace JCDLibrary
 {
+    [ServiceContract]
     public interface IVelibsRetriever
     {
 
         [OperationContract]
-        void getCities();
+        string getCities();
 
         [OperationContract]
-        void getDataFromCity(string city);
+        string getDataFromCity(string city, string station);
 
     }
 }
