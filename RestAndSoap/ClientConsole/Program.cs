@@ -114,5 +114,14 @@ namespace ClientConsole
             }
 
         }
+
+        private static async Task<string> getStationsAsync(VelibsRetrieverClient client, string city, string station)
+        {
+
+            return await client.getDataFromCityAsync(city, station);
+
+        }
+
+
     }
 }
