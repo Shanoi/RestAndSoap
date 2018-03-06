@@ -17,8 +17,9 @@ namespace JCDLibrary
         JArray jsonArrayCities;
         JArray jsonArrayStation;
 
-        public string getCities()
+        public List<string> getCities()
         {
+
             WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/contracts?apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
 
             WebResponse response = request.GetResponse();
@@ -30,18 +31,18 @@ namespace JCDLibrary
             // Read the content.
             jsonArrayCities = JArray.Parse(reader.ReadToEnd());
 
-            string result = "";
+            List<string> result = new List<string>();
 
             foreach (JObject item in jsonArrayCities)
             {
-                result += (String)item.GetValue("name") + "\n";
+                result.Add((String)item.GetValue("name"));
             }
-
+           
             return result;
 
         }
 
-        public string getDataFromCity(string city, string station)
+        public string getDataFromCityString(string city, string station)
         {
 
             ObjectCache cache = MemoryCache.Default;
@@ -66,7 +67,7 @@ namespace JCDLibrary
                     StreamReader reader = new StreamReader(dataStream);
                     // Read the content.
                     data = reader.ReadToEnd();
-                    
+
                     cache.Set(city, data, policy);
 
                 }
@@ -112,7 +113,57 @@ namespace JCDLibrary
             }
 
             return result;
-            
+
+        }
+
+        public ArrayList getDataFromCityStation(string city, string station)
+        {
+            ObjectCache cache = MemoryCache.Default;
+            string data = cache[city] as string;
+
+
+            if (data == null)
+            {
+
+                CacheItemPolicy policy = new CacheItemPolicy();
+                policy.AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(10.0);
+
+                WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
+
+                WebResponse response = request.GetResponse();
+
+                // Get the stream containing content returned by the server.
+                Stream dataStream = response.GetResponseStream();
+                // Open the stream using a StreamReader for easy access.
+                StreamReader reader = new StreamReader(dataStream);
+                // Read the content.
+                data = reader.ReadToEnd();
+
+                cache.Set(city, data, policy);
+
+            }
+
+            jsonArrayStation = JArray.Parse(data);
+
+            ArrayList stations = new ArrayList();
+
+            foreach (JObject item in jsonArrayStation)
+            {
+
+                string name = (String)item.GetValue("name");
+                if (name.ToUpper().Contains(station.ToUpper()))
+                {
+                    stations.Add(new Station((String)item.GetValue("name"),
+                        (String)item.GetValue("address"),
+                        (String)item.GetValue("status"),
+                        (int)item.GetValue("available_bike_stands"),
+                        (int)item.GetValue("available_bikes")));
+
+                }
+            }
+
+            return stations;
+
         }
 
         async public Task<string> getDataFromCityAsync(string city, string station)
@@ -133,7 +184,7 @@ namespace JCDLibrary
                 try
                 {
                     WebResponse response = await request.GetResponseAsync();
-                    
+
                     // Get the stream containing content returned by the server.
                     Stream dataStream = response.GetResponseStream();
                     // Open the stream using a StreamReader for easy access.
@@ -188,6 +239,7 @@ namespace JCDLibrary
             return result;
 
         }
+
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ClientConsole.JCDLibrary;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,7 +44,13 @@ namespace ClientConsole
 
                         case "cities":
 
-                            Console.WriteLine(client.getCities());
+                            List<string> cities = client.getCities().ToList<string>();
+
+                            foreach (string aaaa in cities)
+                            {
+                                Console.WriteLine(aaaa);
+
+                            }
 
                             break;
 

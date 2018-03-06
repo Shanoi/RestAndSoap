@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClientConsole.JCDLibrary {
+namespace ClientGui.VelibsService {
     using System.Runtime.Serialization;
     using System;
     
@@ -139,7 +139,7 @@ namespace ClientConsole.JCDLibrary {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="JCDLibrary.IVelibsRetriever")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="VelibsService.IVelibsRetriever")]
     public interface IVelibsRetriever {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getCities", ReplyAction="http://tempuri.org/IVelibsRetriever/getCitiesResponse")]
@@ -155,7 +155,7 @@ namespace ClientConsole.JCDLibrary {
         System.Threading.Tasks.Task<string> getDataFromCityStringAsync(string city, string station);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getDataFromCityStation", ReplyAction="http://tempuri.org/IVelibsRetriever/getDataFromCityStationResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ClientConsole.JCDLibrary.Station))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ClientGui.VelibsService.Station))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
         object[] getDataFromCityStation(string city, string station);
@@ -171,12 +171,12 @@ namespace ClientConsole.JCDLibrary {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IVelibsRetrieverChannel : ClientConsole.JCDLibrary.IVelibsRetriever, System.ServiceModel.IClientChannel {
+    public interface IVelibsRetrieverChannel : ClientGui.VelibsService.IVelibsRetriever, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class VelibsRetrieverClient : System.ServiceModel.ClientBase<ClientConsole.JCDLibrary.IVelibsRetriever>, ClientConsole.JCDLibrary.IVelibsRetriever {
+    public partial class VelibsRetrieverClient : System.ServiceModel.ClientBase<ClientGui.VelibsService.IVelibsRetriever>, ClientGui.VelibsService.IVelibsRetriever {
         
         public VelibsRetrieverClient() {
         }
