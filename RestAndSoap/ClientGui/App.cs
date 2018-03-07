@@ -15,51 +15,37 @@ namespace ClientGui
 {
     public partial class App : Form
     {
+        
+        List<Station> stations;
 
-        private string data;
-
-        JArray jsonArrayCities;
-        JArray jsonArrayStation;
-
-        ArrayList stations;
+        VelibsRetrieverClient client;
 
         public App()
         {
             InitializeComponent();
 
-            VelibsRetrieverClient client = new VelibsRetrieverClient();
+            client = new VelibsRetrieverClient();
 
-            ArrayList cities = client.getCities();
-           
+            List<string> cities = client.getCities().ToList<string>();
+            
             foreach (string item in cities)
             {
                 cBoxVilles.Items.Add(item);
             }
             cBoxVilles.SelectedIndex = 0;
-            stations = new ArrayList();
-        }
-
-        private void getCities()
-        {
-
-            WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/contracts?apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
-
-            WebResponse response = request.GetResponse();
-
-            // Get the stream containing content returned by the server.
-            Stream dataStream = response.GetResponseStream();
-            // Open the stream using a StreamReader for easy access.
-            StreamReader reader = new StreamReader(dataStream);
-            // Read the content.
-            jsonArrayCities = JArray.Parse(reader.ReadToEnd());
-
+            stations = new List<Station>();
         }
 
         private void getData(string city)
         {
 
-            WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
 
+
+            client.getDataFromCityStation(city, txtStation.Text);
+                
+
+           /* WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
+            
             WebResponse response = request.GetResponse();
 
             // Get the stream containing content returned by the server.
@@ -84,7 +70,7 @@ namespace ClientGui
                         (int)item.GetValue("available_bikes")));
 
                 }
-            }
+            }*/
 
         }
 

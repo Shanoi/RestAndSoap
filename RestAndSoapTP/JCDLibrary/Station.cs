@@ -1,24 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientGui
+namespace JCDLibrary
 {
-    class Station
+    [DataContract]
+    public class Station
     {
-
+        [DataMember]
         private string name;
 
+        [DataMember]
         public string Name
         {
             get { return name; }
         }
 
+        [DataMember]
         private string address;
+        [DataMember]
         private string status;
+        [DataMember]
         private int available_bike_stands;
+        [DataMember]
         private int available_bikes;
 
         public Station(string name, string address, string status,
@@ -33,11 +40,12 @@ namespace ClientGui
 
         public override string ToString()
         {
-            return "Status : " + status + "\n"
+            return "Nom : " + name + "\n"
+                + "Status : " + status + "\n"
                 + "Address : " + address + "\n"
                 + "Available bike stands : " + available_bike_stands + "\n"
                 + "Available bikes : " + available_bikes;
         }
-
     }
+
 }

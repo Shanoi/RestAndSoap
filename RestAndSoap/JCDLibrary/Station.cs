@@ -4,7 +4,7 @@ namespace JCDLibrary
 {
 
     [DataContract]
-    internal class Station
+    public class Station
     {
         [DataMember]
         private string name;

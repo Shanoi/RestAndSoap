@@ -155,13 +155,10 @@ namespace ClientGui.VelibsService {
         System.Threading.Tasks.Task<string> getDataFromCityStringAsync(string city, string station);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getDataFromCityStation", ReplyAction="http://tempuri.org/IVelibsRetriever/getDataFromCityStationResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ClientGui.VelibsService.Station))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        object[] getDataFromCityStation(string city, string station);
+        ClientGui.VelibsService.Station getDataFromCityStation(string city, string station);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getDataFromCityStation", ReplyAction="http://tempuri.org/IVelibsRetriever/getDataFromCityStationResponse")]
-        System.Threading.Tasks.Task<object[]> getDataFromCityStationAsync(string city, string station);
+        System.Threading.Tasks.Task<ClientGui.VelibsService.Station> getDataFromCityStationAsync(string city, string station);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getDataFromCity", ReplyAction="http://tempuri.org/IVelibsRetriever/getDataFromCityResponse")]
         string getDataFromCity(string city, string station);
@@ -213,11 +210,11 @@ namespace ClientGui.VelibsService {
             return base.Channel.getDataFromCityStringAsync(city, station);
         }
         
-        public object[] getDataFromCityStation(string city, string station) {
+        public ClientGui.VelibsService.Station getDataFromCityStation(string city, string station) {
             return base.Channel.getDataFromCityStation(city, station);
         }
         
-        public System.Threading.Tasks.Task<object[]> getDataFromCityStationAsync(string city, string station) {
+        public System.Threading.Tasks.Task<ClientGui.VelibsService.Station> getDataFromCityStationAsync(string city, string station) {
             return base.Channel.getDataFromCityStationAsync(city, station);
         }
         

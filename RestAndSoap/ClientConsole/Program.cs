@@ -46,17 +46,17 @@ namespace ClientConsole
 
                             List<string> cities = client.getCities().ToList<string>();
 
-                            foreach (string aaaa in cities)
+                            foreach (string citi in cities)
                             {
-                                Console.WriteLine(aaaa);
+                                Console.WriteLine(citi);
 
                             }
-
+                            Console.WriteLine("\n");
                             break;
 
                         case "station":
 
-                            Console.WriteLine(client.getDataFromCity(city, ""));
+                            Console.WriteLine(client.getDataFromCityString(city, ""));
 
                             break;
 
@@ -81,9 +81,9 @@ namespace ClientConsole
                             break;
 
                         case "station":
-
-                            Console.WriteLine(client.getDataFromCity(city, s.Split(' ')[1]));
-
+                   
+                            Console.WriteLine(client.getDataFromCityString(city, s.Split(' ')[1]));
+                            
                             break;
 
 
@@ -100,8 +100,8 @@ namespace ClientConsole
                         case "station":
 
                             city = s.Split(' ')[2];
-                            Console.WriteLine(client.getDataFromCity(city, s.Split(' ')[1]));
-
+                            Console.WriteLine(client.getDataFromCityString(city, s.Split(' ')[1]));
+                            
                             break;
 
 
