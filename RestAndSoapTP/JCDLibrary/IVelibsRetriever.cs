@@ -12,7 +12,7 @@ namespace JCDLibrary
     {
 
         [OperationContract]
-        string getCities();
+        List<string> getCities();
 
         [OperationContract]
         string getDataFromCity(string city, string station);

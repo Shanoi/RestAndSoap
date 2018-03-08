@@ -54,6 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\JCDLibrary\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\JCDLibrary\ClientConsole.JCDLibrary.Station.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

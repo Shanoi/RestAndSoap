@@ -8,12 +8,11 @@
   <xs:element name="ArrayOfStation" nillable="true" type="tns:ArrayOfStation" />
   <xs:complexType name="Station">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Available_bike_stands" type="xs:int" />
+      <xs:element minOccurs="0" name="Available_bikes" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="available_bike_stands" type="xs:int" />
-      <xs:element minOccurs="0" name="available_bikes" type="xs:int" />
-      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Station" nillable="true" type="tns:Station" />

@@ -25,6 +25,7 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ad5f1abd-9c44-4c7c-acd0-aed993f1defd" SourceId="1" SourceUrl="net.tcp://localhost:8733/JCDLibrary/Service1/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="2bb5134f-970f-43f7-a8cf-d25478854ec3" SourceId="1" SourceUrl="net.tcp://localhost:8733/JCDLibrary/Service1/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="386bbe6d-322d-47f7-979a-c862bc2b11a6" SourceId="1" SourceUrl="net.tcp://localhost:8733/JCDLibrary/Service1/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="976b5412-d788-4711-bc85-4197d988d01f" SourceId="1" SourceUrl="net.tcp://localhost:8733/JCDLibrary/Service1/mex" />
     <MetadataFile FileName="JCDLibrary.xsd" MetadataType="Schema" ID="7304ae16-144d-4014-9a48-47062011184e" SourceId="1" SourceUrl="net.tcp://localhost:8733/JCDLibrary/Service1/mex" />
   </Metadata>
   <Extensions>

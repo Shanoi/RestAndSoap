@@ -42,6 +42,8 @@ namespace JCDLibrary
             this.Available_bike_stands = available_bike_stands;
             this.Available_bikes = available_bikes;
         }
+
+  
         public override string ToString()
         {
             return "Nom : " + Name + "\n"

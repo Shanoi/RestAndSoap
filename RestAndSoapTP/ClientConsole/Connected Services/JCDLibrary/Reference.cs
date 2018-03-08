@@ -23,22 +23,19 @@ namespace ClientConsole.JCDLibrary {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Available_bike_standsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Available_bikesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string addressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int available_bike_standsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int available_bikesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string name1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string statusField;
+        private string StatusField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -47,6 +44,45 @@ namespace ClientConsole.JCDLibrary {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Available_bike_stands {
+            get {
+                return this.Available_bike_standsField;
+            }
+            set {
+                if ((this.Available_bike_standsField.Equals(value) != true)) {
+                    this.Available_bike_standsField = value;
+                    this.RaisePropertyChanged("Available_bike_stands");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Available_bikes {
+            get {
+                return this.Available_bikesField;
+            }
+            set {
+                if ((this.Available_bikesField.Equals(value) != true)) {
+                    this.Available_bikesField = value;
+                    this.RaisePropertyChanged("Available_bikes");
+                }
             }
         }
         
@@ -64,66 +100,14 @@ namespace ClientConsole.JCDLibrary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string address {
+        public string Status {
             get {
-                return this.addressField;
+                return this.StatusField;
             }
             set {
-                if ((object.ReferenceEquals(this.addressField, value) != true)) {
-                    this.addressField = value;
-                    this.RaisePropertyChanged("address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int available_bike_stands {
-            get {
-                return this.available_bike_standsField;
-            }
-            set {
-                if ((this.available_bike_standsField.Equals(value) != true)) {
-                    this.available_bike_standsField = value;
-                    this.RaisePropertyChanged("available_bike_stands");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int available_bikes {
-            get {
-                return this.available_bikesField;
-            }
-            set {
-                if ((this.available_bikesField.Equals(value) != true)) {
-                    this.available_bikesField = value;
-                    this.RaisePropertyChanged("available_bikes");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Name="name")]
-        public string name1 {
-            get {
-                return this.name1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.name1Field, value) != true)) {
-                    this.name1Field = value;
-                    this.RaisePropertyChanged("name1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string status {
-            get {
-                return this.statusField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.statusField, value) != true)) {
-                    this.statusField = value;
-                    this.RaisePropertyChanged("status");
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
                 }
             }
         }
@@ -143,10 +127,10 @@ namespace ClientConsole.JCDLibrary {
     public interface IVelibsRetriever {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getCities", ReplyAction="http://tempuri.org/IVelibsRetriever/getCitiesResponse")]
-        string getCities();
+        string[] getCities();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getCities", ReplyAction="http://tempuri.org/IVelibsRetriever/getCitiesResponse")]
-        System.Threading.Tasks.Task<string> getCitiesAsync();
+        System.Threading.Tasks.Task<string[]> getCitiesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getDataFromCity", ReplyAction="http://tempuri.org/IVelibsRetriever/getDataFromCityResponse")]
         string getDataFromCity(string city, string station);
@@ -188,11 +172,11 @@ namespace ClientConsole.JCDLibrary {
                 base(binding, remoteAddress) {
         }
         
-        public string getCities() {
+        public string[] getCities() {
             return base.Channel.getCities();
         }
         
-        public System.Threading.Tasks.Task<string> getCitiesAsync() {
+        public System.Threading.Tasks.Task<string[]> getCitiesAsync() {
             return base.Channel.getCitiesAsync();
         }
         
