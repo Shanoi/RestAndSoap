@@ -6,22 +6,26 @@ namespace JCDLibrary
     [DataContract]
     public class Station
     {
-        [DataMember]
         private string name;
 
-        [DataMember]
-        public string Name
-        {
-            get { return name; }
-        }
 
         [DataMember]
+        public string Address { get => address; set => address = value; }
+        [DataMember]
+        public string Name { get => name; set => name = value; }
+        [DataMember]
+        public string Status { get => status; set => status = value; }
+        [DataMember]
+        public int Available_bike_stands { get => available_bike_stands; set => available_bike_stands = value; }
+        [DataMember]
+        public int Available_bikes { get => available_bikes; set => available_bikes = value; }
+
         private string address;
-        [DataMember]
+
         private string status;
-        [DataMember]
+
         private int available_bike_stands;
-        [DataMember]
+
         private int available_bikes;
 
         public Station(string name, string address, string status,

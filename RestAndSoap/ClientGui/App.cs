@@ -26,7 +26,7 @@ namespace ClientGui
 
             client = new VelibsRetrieverClient();
 
-            List<string> cities = client.getCities().ToList<string>();
+            List<string> cities = client.getCities().ToList();
             
             foreach (string item in cities)
             {
@@ -35,7 +35,7 @@ namespace ClientGui
             cBoxVilles.SelectedIndex = 0;
             stations = new List<Station>();
         }
-
+         
         private void getData(string city)
         {
 
