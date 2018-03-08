@@ -49,7 +49,7 @@ namespace ClientConsole
                             {
                                 Console.WriteLine(citi);
                             }
-                            
+
                             break;
 
                         case "station":
@@ -125,17 +125,6 @@ namespace ClientConsole
                 }
 
             }
-
-        }
-
-        static string stationToString(Station station)
-        {
-            
-            return "Nom : " + station.Name + "\n"
-                + "Status : " + station.Status + "\n"
-                + "Address : " + station.Address + "\n"
-                + "Available bike stands : " + station.Available_bike_stands + "\n"
-                + "Available bikes : " + station.Available_bikes;
 
         }
 
