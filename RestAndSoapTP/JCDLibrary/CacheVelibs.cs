@@ -22,6 +22,8 @@ namespace JCDLibrary
             cache = MemoryCache.Default;
         }
 
+        public CacheVelibs() { }
+
         public int NbMonths { get => nbMonths; set => nbMonths = value; }
         public int NbMinutes { get => nbMinutes; set => nbMinutes = value; }
         public ObjectCache Cache { get => cache; set => cache = value; }

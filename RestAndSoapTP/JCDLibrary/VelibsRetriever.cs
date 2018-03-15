@@ -124,6 +124,8 @@ namespace JCDLibrary
 
             }
 
+            result += "Cache --- " + cache.NbMinutes + " ---- " + cache.NbMonths;
+
             return result;
         }
 
