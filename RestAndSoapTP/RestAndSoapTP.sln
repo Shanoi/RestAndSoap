@@ -20,6 +20,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientAdmin", "ClientAdmin\
 		{4AF384C0-396B-4CC7-9EC8-38839C03153C} = {4AF384C0-396B-4CC7-9EC8-38839C03153C}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientConsoleAsync", "ClientConsoleAsync\ClientConsoleAsync.csproj", "{CD3E5B3C-2310-4DE0-BE83-8A78B13D05E5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4AF384C0-396B-4CC7-9EC8-38839C03153C} = {4AF384C0-396B-4CC7-9EC8-38839C03153C}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +47,10 @@ Global
 		{3C9AACC6-2F87-4882-A7A8-C06F6126CCAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C9AACC6-2F87-4882-A7A8-C06F6126CCAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C9AACC6-2F87-4882-A7A8-C06F6126CCAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD3E5B3C-2310-4DE0-BE83-8A78B13D05E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD3E5B3C-2310-4DE0-BE83-8A78B13D05E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD3E5B3C-2310-4DE0-BE83-8A78B13D05E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD3E5B3C-2310-4DE0-BE83-8A78B13D05E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
