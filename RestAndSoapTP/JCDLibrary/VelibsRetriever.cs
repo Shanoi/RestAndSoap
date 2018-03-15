@@ -16,11 +16,12 @@ namespace JCDLibrary
 
         private const string CITIES_KEY = "cities";
 
+        private CacheVelibs cache = new CacheVelibs(1, 1);
+
         public List<string> getCities()
         {
 
-            ObjectCache cache = MemoryCache.Default;
-            List<string> cities = cache[CITIES_KEY] as List<string>;
+            List<string> cities = cache.Cache[CITIES_KEY] as List<string>;
 
             if (cities == null)
             {
@@ -46,7 +47,7 @@ namespace JCDLibrary
                     cities.Add((String)item.GetValue("name"));
                 }
 
-                cache.Set(CITIES_KEY, cities, policy);
+                cache.setCacheCities(CITIES_KEY, cities);
 
             }
 
@@ -56,8 +57,8 @@ namespace JCDLibrary
 
         public string getDataFromCity(string city, string station)
         {
-            ObjectCache cache = MemoryCache.Default;
-            string data = cache[city + "string"] as string;
+            string key = city + "string";
+            string data = cache.Cache[key] as string;
 
 
             if (data == null)
@@ -79,7 +80,7 @@ namespace JCDLibrary
                     // Read the content.
                     data = reader.ReadToEnd();
 
-                    cache.Set(city, data, policy);
+                    cache.setCacheStation(key, data);
 
                 }
                 catch (Exception)
@@ -129,15 +130,15 @@ namespace JCDLibrary
         public List<Station> getListStationFromCity(string city, string station)
         {
 
-            ObjectCache cache = MemoryCache.Default;
-            List<Station> stations = cache[city + "station"] as List<Station>;
+            string key = city + "station";
+            List<Station> stations = cache.Cache[key] as List<Station>;
 
 
             if (stations == null)
             {
 
                 CacheItemPolicy policy = new CacheItemPolicy();
-                policy.AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(10.0);
+                policy.AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(30);
 
                 WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
 
@@ -163,7 +164,7 @@ namespace JCDLibrary
 
                 }
 
-                cache.Set(city, stations, policy);
+                cache.setCacheStation(key, stations);
 
             }
 
@@ -171,7 +172,7 @@ namespace JCDLibrary
 
             foreach (Station item in stations)
             {
-                
+
                 if (item.Name.ToUpper().Contains(station.ToUpper()))
                 {
                     result.Add(item);

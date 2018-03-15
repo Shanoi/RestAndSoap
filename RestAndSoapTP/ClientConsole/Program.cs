@@ -30,6 +30,9 @@ namespace ClientConsole
 
             while (s != "exit")
             {
+
+                Console.WriteLine("What do you want ?");
+
                 s = Console.ReadLine();
 
                 if (s.Split(' ').Length == 1)
