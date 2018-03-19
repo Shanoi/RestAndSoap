@@ -177,23 +177,6 @@ namespace ClientConsoleAsync
 
         }
 
-        static async Task getStationDataStation(string city, string station)
-        {
-
-            try
-            {
-                Task<List<Station>> task = new VelibsRetrieverClient().getListStationFromCityAsync(city, station);
-                if (task == await Task.WhenAny(task, Task.Delay(10000000)))
-                {
-                    Console.WriteLine(await task);
-                }
-                else Console.WriteLine("Timed out");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-        }
+        
     }
 }
