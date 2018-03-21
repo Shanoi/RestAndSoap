@@ -303,7 +303,7 @@ namespace JCDLibrary
                 if (stations == null)
                 {
 
-                    WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
+                    WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=lyon&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
 
                     WebResponse response = request.GetResponse();
 
@@ -348,5 +348,6 @@ namespace JCDLibrary
 
         }
 
+       
     }
 }
