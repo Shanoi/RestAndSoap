@@ -33,12 +33,23 @@ namespace ClientGUIAsync
             stations = new List<Station>();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private async void btnSearch_ClickAsync(object sender, EventArgs e)
         {
+
+            /*stations.Clear();
+
+            await getStationDataStation(cBoxVilles.SelectedItem.ToString(), txtStation.Text, listItems);*/
 
             stations.Clear();
 
-            getStationDataStation(cBoxVilles.SelectedItem.ToString(), txtStation.Text, listItems).ContinueWith(delegate { });
+            stations = await client.getListStationFromCityAsync(cBoxVilles.SelectedItem.ToString(), txtStation.Text);
+
+            listItems.SelectedIndexChanged -= listItems_SelectedIndexChanged;
+            listItems.DataSource = null;
+            listItems.DisplayMember = "Name";
+            listItems.DataSource = stations;
+            listItems.SelectedIndex = -1; // This optional line keeps the first item from being selected.
+            listItems.SelectedIndexChanged += listItems_SelectedIndexChanged;
 
             /*Task<List<Station>> task = client.getListStationFromCityAsync(cBoxVilles.SelectedItem.ToString(), txtStation.Text);
 

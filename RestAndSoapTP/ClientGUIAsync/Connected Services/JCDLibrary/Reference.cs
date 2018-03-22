@@ -143,12 +143,6 @@ namespace ClientGUIAsync.JCDLibrary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getListStationFromCity", ReplyAction="http://tempuri.org/IVelibsRetriever/getListStationFromCityResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<ClientGUIAsync.JCDLibrary.Station>> getListStationFromCityAsync(string city, string station);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getListStationFromCityAsynqueuh", ReplyAction="http://tempuri.org/IVelibsRetriever/getListStationFromCityAsynqueuhResponse")]
-        System.Collections.Generic.List<ClientGUIAsync.JCDLibrary.Station> getListStationFromCityAsynqueuh(string city, string station);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getListStationFromCityAsynqueuh", ReplyAction="http://tempuri.org/IVelibsRetriever/getListStationFromCityAsynqueuhResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<ClientGUIAsync.JCDLibrary.Station>> getListStationFromCityAsynqueuhAsync(string city, string station);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -200,14 +194,6 @@ namespace ClientGUIAsync.JCDLibrary {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<ClientGUIAsync.JCDLibrary.Station>> getListStationFromCityAsync(string city, string station) {
             return base.Channel.getListStationFromCityAsync(city, station);
-        }
-        
-        public System.Collections.Generic.List<ClientGUIAsync.JCDLibrary.Station> getListStationFromCityAsynqueuh(string city, string station) {
-            return base.Channel.getListStationFromCityAsynqueuh(city, station);
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<ClientGUIAsync.JCDLibrary.Station>> getListStationFromCityAsynqueuhAsync(string city, string station) {
-            return base.Channel.getListStationFromCityAsynqueuhAsync(city, station);
         }
     }
 }

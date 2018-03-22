@@ -44,19 +44,4 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="getListStationFromCityAsynqueuh">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="city" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="station" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getListStationFromCityAsynqueuhResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/JCDLibrary" minOccurs="0" name="getListStationFromCityAsynqueuhResult" nillable="true" type="q3:ArrayOfStation" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
 </xs:schema>
