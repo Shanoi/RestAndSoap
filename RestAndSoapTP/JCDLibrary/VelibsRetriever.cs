@@ -48,7 +48,7 @@ namespace JCDLibrary
                 cache.setCacheCities(CITIES_KEY, cities);
 
             }
-            
+
             return cities;
 
         }
@@ -118,11 +118,11 @@ namespace JCDLibrary
                 result += item.ToString() + "\n\n";
 
             }
-            
+
             return result;
         }
 
-        public List<Station> getListStationFromCity(string city, string station)
+        public async Task<List<Station>> getListStationFromCity(string city, string station)
         {
 
             string key = city + "station";
@@ -132,29 +132,7 @@ namespace JCDLibrary
             if (stations == null)
             {
 
-                WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
-
-                WebResponse response = request.GetResponse();
-
-                // Get the stream containing content returned by the server.
-                Stream dataStream = response.GetResponseStream();
-                // Open the stream using a StreamReader for easy access.
-                StreamReader reader = new StreamReader(dataStream);
-                // Read the content.
-                JArray jsonArrayStation = JArray.Parse(reader.ReadToEnd());
-
-                stations = new List<Station>();
-
-                foreach (JObject item in jsonArrayStation)
-                {
-
-                    stations.Add(new Station((String)item.GetValue("name"),
-                        (String)item.GetValue("address"),
-                        (String)item.GetValue("status"),
-                        (int)item.GetValue("available_bike_stands"),
-                        (int)item.GetValue("available_bikes")));
-
-                }
+                stations = await GetListStationAsync(city);
 
                 cache.setCacheStation(key, stations);
 
@@ -171,8 +149,41 @@ namespace JCDLibrary
 
                 }
             }
-
+            Thread.Sleep(5000);
             return result;
+        }
+
+        private async Task<List<Station>> GetListStationAsync(string city)
+        {
+            
+                WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
+
+            /*WebResponse response = */
+            WebResponse response = await request.GetResponseAsync();
+
+            // Get the stream containing content returned by the server.
+            Stream dataStream = response.GetResponseStream();
+            
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream);
+            // Read the content.
+            JArray jsonArrayStation = JArray.Parse(await reader.ReadToEndAsync());
+
+            List<Station> sts = new List<Station>();
+
+            foreach (JObject item in jsonArrayStation)
+            {
+
+                sts.Add(new Station((String)item.GetValue("name"),
+                    (String)item.GetValue("address"),
+                    (String)item.GetValue("status"),
+                    (int)item.GetValue("available_bike_stands"),
+                    (int)item.GetValue("available_bikes")));
+
+            }
+
+            return sts;
+
         }
 
     }

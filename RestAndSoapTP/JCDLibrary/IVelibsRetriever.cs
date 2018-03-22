@@ -18,7 +18,7 @@ namespace JCDLibrary
         string getDataFromCity(string city, string station);
 
         [OperationContract]
-        List<Station> getListStationFromCity(string city, string station);
+        Task<List<Station>> getListStationFromCity(string city, string station);
         
 
     }
