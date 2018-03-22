@@ -164,7 +164,7 @@ namespace JCDLibrary
 
                 }
             }
-            Thread.Sleep(5000);
+            
             return result;
         }
 

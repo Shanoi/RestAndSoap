@@ -17,16 +17,21 @@ namespace ClientConsole
             VelibsRetrieverClient client = new VelibsRetrieverClient();
 
             string commands = "help: Display the help\n" +
-            "cities: Display the list of the available cities\n" +
-            "city <City Name>: Choose the city\n" +
-            "station <Station Name> [<City Name>]: Display information about stations corresponding to the name\n" +
-            "exit: quit the program\n";
+                "fidelity [Bronze | Silver | Gold]: choose the level of fidelity for the cache fidelity of the station, or display the different fidelity programs\n" +
+                "cities: Display the list of the available cities\n" +
+                "city <City Name>: Choose the city\n" +
+                "station <Station Name> [<City Name>]: Display information about stations corresponding to the name\n" +
+                "exit: quit the program\n";
 
             Console.WriteLine("Type \"help\" for help");
 
             string s = "";
 
             string city = "";
+
+            List<string> fi = client.getFidelityLevels().ToList<string>();
+
+            string fidelityLevel = "Bronze";
 
             while (s != "exit")
             {
@@ -47,7 +52,7 @@ namespace ClientConsole
                         case "cities":
 
                             List<string> cities = client.getCities().ToList<string>();
-
+                            
                             foreach (string citi in cities)
                             {
                                 Console.WriteLine(citi);
@@ -57,8 +62,17 @@ namespace ClientConsole
 
                         case "station":
 
-                            Console.WriteLine(client.getDataFromCity(city, ""));
+                            Console.WriteLine(client.getDataFromCity(city, "", fidelityLevel));
 
+                            break;
+
+                        case "fidelity":
+                            
+                            foreach (string fid in fi)
+                            {
+                                Console.WriteLine(fid);
+                            }
+                            
                             break;
 
                         case "exit":
@@ -83,10 +97,22 @@ namespace ClientConsole
 
                         case "station":
 
-                            Console.WriteLine(client.getDataFromCity(city, s.Split(' ')[1]));
+                            Console.WriteLine(client.getDataFromCity(city, s.Split(' ')[1], fidelityLevel));
 
                             break;
 
+                        case "fidelity":
+                           
+                            if (fi.Contains(s.Split(' ')[1]))
+                            {
+                                fidelityLevel = s.Split(' ')[1];
+                            }
+                            else
+                            {
+                                Console.WriteLine("Wrong fidelity level\n");
+                            }
+                                                        
+                            break;
 
                         default:
                             Console.WriteLine(ERROR_MESSAGE);
@@ -109,7 +135,7 @@ namespace ClientConsole
                                 Console.WriteLine(stationToString(station)+ "\n");
                             }*/
 
-                            Console.WriteLine(client.getDataFromCity(city, s.Split(' ')[1]));
+                            Console.WriteLine(client.getDataFromCity(city, s.Split(' ')[1], fidelityLevel));
 
                             break;
 

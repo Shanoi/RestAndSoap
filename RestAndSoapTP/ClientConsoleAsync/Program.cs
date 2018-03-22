@@ -17,16 +17,21 @@ namespace ClientConsoleAsync
             VelibsRetrieverClient client = new VelibsRetrieverClient();
 
             string commands = "help: Display the help\n" +
-            "cities: Display the list of the available cities\n" +
-            "city <City Name>: Choose the city\n" +
-            "station <Station Name> [<City Name>]: Display information about stations corresponding to the name\n" +
-            "exit: quit the program\n";
+                "fidelity [Bronze | Silver | Gold]: choose the level of fidelity for the cache fidelity of the station, or display the different fidelity programs\n" +
+                "cities: Display the list of the available cities\n" +
+                "city <City Name>: Choose the city\n" +
+                "station <Station Name> [<City Name>]: Display information about stations corresponding to the name\n" +
+                "exit: quit the program\n";
 
             Console.WriteLine("Type \"help\" for help");
 
             string s = "";
 
             string city = "";
+
+            List<string> fi = client.getFidelityLevels().ToList<string>();
+
+            string fidelityLevel = "Bronze";
 
             while (s != "exit")
             {
@@ -48,18 +53,20 @@ namespace ClientConsoleAsync
 
                             getCityData().ContinueWith(delegate { Console.WriteLine("Done"); });
 
-                            /*List<string> cities = client.getCities().ToList<string>();
-
-                            foreach (string citi in cities)
-                            {
-                                Console.WriteLine(citi);
-                            }*/
-
                             break;
 
                         case "station":
 
-                            getStationData(city, "").ContinueWith(delegate { Console.WriteLine("Done"); });
+                            getStationData(city, "", fidelityLevel).ContinueWith(delegate { Console.WriteLine("Done"); });
+
+                            break;
+
+                        case "fidelity":
+
+                            foreach (string fid in fi)
+                            {
+                                Console.WriteLine(fid);
+                            }
 
                             break;
 
@@ -85,10 +92,22 @@ namespace ClientConsoleAsync
 
                         case "station":
 
-                            getStationData(city, s.Split(' ')[1]).ContinueWith(delegate { Console.WriteLine("Done"); });
+                            getStationData(city, s.Split(' ')[1], fidelityLevel).ContinueWith(delegate { Console.WriteLine("Done"); });
 
                             break;
 
+                        case "fidelity":
+
+                            if (fi.Contains(s.Split(' ')[1]))
+                            {
+                                fidelityLevel = s.Split(' ')[1];
+                            }
+                            else
+                            {
+                                Console.WriteLine("Wrong fidelity level\n");
+                            }
+
+                            break;
 
                         default:
                             Console.WriteLine(ERROR_MESSAGE);
@@ -111,7 +130,7 @@ namespace ClientConsoleAsync
                                 Console.WriteLine(stationToString(station)+ "\n");
                             }*/
 
-                            getStationData(city, s.Split(' ')[1]).ContinueWith(delegate { Console.WriteLine("Done"); });
+                            getStationData(city, s.Split(' ')[1], fidelityLevel).ContinueWith(delegate { Console.WriteLine("Done"); });
 
                             break;
 
@@ -147,7 +166,7 @@ namespace ClientConsoleAsync
                     {
                         Console.WriteLine(citi);
                     }
-                    
+
                 }
                 else Console.WriteLine("Timed out");
             }
@@ -158,12 +177,12 @@ namespace ClientConsoleAsync
 
         }
 
-        static async Task getStationData(string city, string station)
+        static async Task getStationData(string city, string station, string fidelity)
         {
 
             try
             {
-                Task<string> task = new VelibsRetrieverClient().getDataFromCityAsync(city, station);
+                Task<string> task = new VelibsRetrieverClient().getDataFromCityAsync(city, station, fidelity);
                 if (task == await Task.WhenAny(task, Task.Delay(10000000)))
                 {
                     Console.WriteLine(await task);
@@ -176,7 +195,5 @@ namespace ClientConsoleAsync
             }
 
         }
-
-        
     }
 }
