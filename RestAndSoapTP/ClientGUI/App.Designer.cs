@@ -34,6 +34,8 @@
             this.listItems = new System.Windows.Forms.ListBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.cBoxVilles = new System.Windows.Forms.ComboBox();
+            this.cbFidelity = new System.Windows.Forms.ComboBox();
+            this.lblFidelity = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtStation
@@ -101,12 +103,36 @@
             this.cBoxVilles.Sorted = true;
             this.cBoxVilles.TabIndex = 6;
             // 
+            // cbFidelity
+            // 
+            this.cbFidelity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFidelity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFidelity.FormattingEnabled = true;
+            this.cbFidelity.Location = new System.Drawing.Point(600, 12);
+            this.cbFidelity.Name = "cbFidelity";
+            this.cbFidelity.Size = new System.Drawing.Size(115, 28);
+            this.cbFidelity.Sorted = true;
+            this.cbFidelity.TabIndex = 7;
+            // 
+            // lblFidelity
+            // 
+            this.lblFidelity.AutoSize = true;
+            this.lblFidelity.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFidelity.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblFidelity.Location = new System.Drawing.Point(517, 12);
+            this.lblFidelity.Name = "lblFidelity";
+            this.lblFidelity.Size = new System.Drawing.Size(77, 24);
+            this.lblFidelity.TabIndex = 8;
+            this.lblFidelity.Text = "Fidelity";
+            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(727, 518);
+            this.Controls.Add(this.lblFidelity);
+            this.Controls.Add(this.cbFidelity);
             this.Controls.Add(this.cBoxVilles);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.listItems);
@@ -128,5 +154,7 @@
         private System.Windows.Forms.ListBox listItems;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cBoxVilles;
+        private System.Windows.Forms.ComboBox cbFidelity;
+        private System.Windows.Forms.Label lblFidelity;
     }
 }

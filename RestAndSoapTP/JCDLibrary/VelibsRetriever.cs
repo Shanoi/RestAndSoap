@@ -17,7 +17,11 @@ namespace JCDLibrary
 
         private const string CITIES_KEY = "cities";
 
-        private CacheVelibs cache = new CacheVelibs(1, 1);
+        private CacheVelibs cache = new CacheVelibs(1, 5);
+
+        private DateTime lastUpdateStationsGUI;
+
+        private DateTime lastUpdateStationsConsole;
 
         public List<string> getCities()
         {
@@ -53,13 +57,12 @@ namespace JCDLibrary
 
         }
 
-        public string getDataFromCity(string city, string station)
+        public string getDataFromCity(string city, string station, string fidelity)
         {
             string key = city + "string";
             string data = cache.Cache[key] as string;
 
-
-            if (data == null)
+            if (data == null || DateTime.Now >= lastUpdateStationsConsole + cache.Fidelity[fidelity])
             {
 
                 WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
@@ -76,7 +79,7 @@ namespace JCDLibrary
                     data = reader.ReadToEnd();
 
                     cache.setCacheStation(key, data);
-
+                    lastUpdateStationsConsole = DateTime.Now;
                 }
                 catch (Exception)
                 {
@@ -122,19 +125,31 @@ namespace JCDLibrary
             return result;
         }
 
-        public async Task<List<Station>> getListStationFromCity(string city, string station)
+        public List<string> getFidelityLevels()
+        {
+            return cache.Fidelity.Keys.ToList();
+        }
+
+        public DateTime getLastUpdate()
+        {
+            return lastUpdateStationsGUI;
+        }
+
+        public async Task<List<Station>> getListStationFromCity(string city, string station, string fidelity)
         {
 
             string key = city + "station";
             List<Station> stations = cache.Cache[key] as List<Station>;
 
 
-            if (stations == null)
+            if (stations == null || DateTime.Now >= lastUpdateStationsGUI + cache.Fidelity[fidelity])
             {
 
                 stations = await GetListStationAsync(city);
 
                 cache.setCacheStation(key, stations);
+
+                lastUpdateStationsGUI = DateTime.Now;
 
             }
 

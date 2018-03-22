@@ -13,6 +13,8 @@ namespace JCDLibrary
         static int nbMonths;
         static int nbMinutes;
 
+        private Dictionary<string, System.TimeSpan> fidelity;
+
         ObjectCache cache;
 
         public CacheVelibs(int nbMonths, int nbMinutes)
@@ -20,6 +22,10 @@ namespace JCDLibrary
             this.NbMonths = nbMonths;
             this.NbMinutes = nbMinutes;
             cache = MemoryCache.Default;
+            fidelity = new Dictionary<string, TimeSpan>();
+            fidelity["Bronze"] = new TimeSpan(0, 0, nbMinutes, 0);
+            fidelity["Silver"] = new TimeSpan(0, 0, nbMinutes / 2, 0);
+            fidelity["Gold"] = new TimeSpan(0, 0, 1, 0);
         }
 
         public CacheVelibs() { }
@@ -27,6 +33,7 @@ namespace JCDLibrary
         public int NbMonths { get => nbMonths; set => nbMonths = value; }
         public int NbMinutes { get => nbMinutes; set => nbMinutes = value; }
         public ObjectCache Cache { get => cache; set => cache = value; }
+        public Dictionary<string, TimeSpan> Fidelity { get => fidelity; set => fidelity = value; }
 
         public void setCacheCities(string key, List<string> cities)
         {

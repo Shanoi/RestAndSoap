@@ -30,6 +30,14 @@ namespace ClientGUI
                 cBoxVilles.Items.Add(item);
             }
             cBoxVilles.SelectedIndex = 0;
+
+            List<string> fidelity = client.getFidelityLevels().ToList();
+            foreach (string item in fidelity)
+            {
+                cbFidelity.Items.Add(item);
+            }
+            cbFidelity.SelectedIndex = 0;
+
             stations = new List<Station>();
         }
 
@@ -38,7 +46,7 @@ namespace ClientGUI
 
             stations.Clear();
 
-            stations = client.getListStationFromCity(cBoxVilles.SelectedItem.ToString(), txtStation.Text).ToList<Station>();
+            stations = client.getListStationFromCity(cBoxVilles.SelectedItem.ToString(), txtStation.Text, cbFidelity.SelectedItem.ToString()).ToList<Station>();
 
             listItems.SelectedIndexChanged -= listItems_SelectedIndexChanged;
             listItems.DataSource = null;

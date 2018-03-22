@@ -30,6 +30,14 @@ namespace ClientGUIAsync
                 cBoxVilles.Items.Add(item);
             }
             cBoxVilles.SelectedIndex = 0;
+
+            List<string> fidelity = client.getFidelityLevels().ToList();
+            foreach (string item in fidelity)
+            {
+                cbFidelity.Items.Add(item);
+            }
+            cbFidelity.SelectedIndex = 0;
+
             stations = new List<Station>();
         }
 
@@ -38,7 +46,9 @@ namespace ClientGUIAsync
 
             stations.Clear();
 
-            stations = await client.getListStationFromCityAsync(cBoxVilles.SelectedItem.ToString(), txtStation.Text);
+            stations = await client.getListStationFromCityAsync(cBoxVilles.SelectedItem.ToString(), txtStation.Text, cbFidelity.SelectedItem.ToString());
+
+            lblLastUpdateValue.Text = (await client.getLastUpdateAsync()).ToString("h:mm:ss tt");
 
             listItems.SelectedIndexChanged -= listItems_SelectedIndexChanged;
             listItems.DataSource = null;
@@ -68,5 +78,6 @@ namespace ClientGUIAsync
                 + "Available bikes : " + station.Available_bikes;
 
         }
+
     }
 }

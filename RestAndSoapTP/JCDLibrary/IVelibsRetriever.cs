@@ -15,11 +15,15 @@ namespace JCDLibrary
         List<string> getCities();
 
         [OperationContract]
-        string getDataFromCity(string city, string station);
+        string getDataFromCity(string city, string station, string fidelity);
 
         [OperationContract]
-        Task<List<Station>> getListStationFromCity(string city, string station);
-        
+        Task<List<Station>> getListStationFromCity(string city, string station, string fidelity);
 
+        [OperationContract]
+        List<string> getFidelityLevels();
+
+        [OperationContract]
+        DateTime getLastUpdate();
     }
 }
