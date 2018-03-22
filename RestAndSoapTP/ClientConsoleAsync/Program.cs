@@ -145,7 +145,7 @@ namespace ClientConsoleAsync
 
                     foreach (string citi in await task)
                     {
-                        Console.WriteLine(citi + "Async");
+                        Console.WriteLine(citi);
                     }
                     
                 }

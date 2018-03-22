@@ -48,7 +48,7 @@ namespace JCDLibrary
                 cache.setCacheCities(CITIES_KEY, cities);
 
             }
-
+            
             return cities;
 
         }
@@ -118,9 +118,7 @@ namespace JCDLibrary
                 result += item.ToString() + "\n\n";
 
             }
-
-            result += "Cache --- " + cache.NbMinutes + " ---- " + cache.NbMonths;
-
+            
             return result;
         }
 
