@@ -155,15 +155,15 @@ namespace JCDLibrary
 
         private async Task<List<Station>> GetListStationAsync(string city)
         {
-            
-                WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
+
+            WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
 
             /*WebResponse response = */
             WebResponse response = await request.GetResponseAsync();
 
             // Get the stream containing content returned by the server.
             Stream dataStream = response.GetResponseStream();
-            
+
             // Open the stream using a StreamReader for easy access.
             StreamReader reader = new StreamReader(dataStream);
             // Read the content.
