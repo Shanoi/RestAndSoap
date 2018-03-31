@@ -22,10 +22,10 @@ namespace JCDLibrary
         private Dictionary<string, DateTime> lastUpdateStationsGUI = new Dictionary<string, DateTime>();
 
         private Dictionary<string, DateTime> lastUpdateStationsConsole = new Dictionary<string, DateTime>();
-
+        
         public List<string> getCities()
         {
-
+            
             List<string> cities = cache.Cache[CITIES_KEY] as List<string>;
 
             if (cities == null)
@@ -121,7 +121,7 @@ namespace JCDLibrary
                 result += item.ToString() + "\n\n";
 
             }
-
+            
             return result;
         }
 
@@ -198,7 +198,7 @@ namespace JCDLibrary
             }
 
             return sts;
-            
+
         }
 
     }
