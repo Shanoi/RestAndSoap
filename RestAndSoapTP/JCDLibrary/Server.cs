@@ -5,24 +5,31 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 
 using JCDLibrary;
+using System.ServiceModel.Description;
+using System.Text;
 /**
- * References:
- * http://badger.developpez.com/tutoriels/dotnet/web-service-rest-avec-wcf-3-5/#LII-B
- *  - mono server.exe /standalone  => start the server in standalone mode
- *  - mono server.exe /port 9191   => starts the server on port 9191
- * Default is interactive mode on port 9090. Options can obviously be combined
- **/
+* References:
+* http://badger.developpez.com/tutoriels/dotnet/web-service-rest-avec-wcf-3-5/#LII-B
+*  - mono server.exe /standalone  => start the server in standalone mode
+*  - mono server.exe /port 9191   => starts the server on port 9191
+* Default is interactive mode on port 9090. Options can obviously be combined
+**/
 public class Server
 {
     // Attirbutes to support port selection and standalone mode
     private bool Standalone = false;
-    private string PortVelibs = "9090";
-    //private string PortAdmin = "9091";
+    private string PortVelibs = "8733";
+    //private string PortAdmin = "8734";
     private string Locker = "server.LOCK";
 
     // Web Server used to host services
     private WebServiceHost HostVelibs;
     //private WebServiceHost HostAdmin;
+
+    WSHttpBinding BindingConfig;
+    EndpointIdentity DNSIdentity;
+    Uri URI;
+    ContractDescription ConfDescription;
 
     /**
      * Start the web server on the given port, and host the expected service
@@ -30,15 +37,30 @@ public class Server
     public void start()
     {
 
+        // In constructor initializing configuration elements by code
+        BindingConfig = ConfigBinding();
+        DNSIdentity = ConfigEndPoint();
+        URI = ConfigURI();
+        ConfDescription = ConfigContractDescription();
+
+       // var Address = new EndpointAddress(URI, DNSIdentity);
 
         Console.WriteLine("Starting a WCF self-hosted .Net server... ");
-        //string urltcp = "http://localhost:8733/JCDLibrary/Client/";
-        //string urlhttp = "http://localhost:8734/JCDLibrary/Admin/";
-        //Uri[] baseAddresses = { new Uri(urltcp), new Uri(urlhttp) };
+        string urlClient = "http://localhost:" + PortVelibs + "/JCDLibrary/Client/";
+        //string urlAdmin = "http://localhost:"+PortAdmin+"/JCDLibrary/Admin/";
 
-        HostVelibs = new WebServiceHost(typeof(VelibsRetriever), new Uri("http://localhost:8733"));
+
+       /* HostAdmin = new WebServiceHost(typeof(AdminCommands));
+        HostAdmin.AddServiceEndpoint(typeof(IAdminCommands), new WSHttpBinding(), urlAdmin);
+        HostAdmin.Open();*/
+        
+        HostVelibs = new WebServiceHost(typeof(VelibsRetriever), URI);
+        HostVelibs.AddServiceEndpoint(typeof(IVelibsRetriever), BindingConfig, "");
+     
+        HostVelibs.Open();
 
         HostVelibs.Open();
+        //HostAdmin.Open();
 
         /*Console.WriteLine("Starting a WCF self-hosted .Net server... ");
         string url = "net.tcp://" + "localhost" + ":" + PortVelibs;
@@ -65,7 +87,61 @@ public class Server
         if (Standalone) { lockServer(); } else { interactive(); }
 
     }
+    
+    public WSHttpBinding ConfigBinding()
+    {
+        // ----- Programmatic definition of the SomeService Binding -----
+        var wsHttpBinding = new WSHttpBinding();
 
+        wsHttpBinding.Name = "Client";
+        wsHttpBinding.CloseTimeout = TimeSpan.FromMinutes(1);
+        wsHttpBinding.OpenTimeout = TimeSpan.FromMinutes(1);
+        wsHttpBinding.ReceiveTimeout = TimeSpan.FromMinutes(10);
+        wsHttpBinding.SendTimeout = TimeSpan.FromMinutes(1);
+        wsHttpBinding.HostNameComparisonMode = HostNameComparisonMode.StrongWildcard;
+        wsHttpBinding.MaxBufferPoolSize = 524288;
+        wsHttpBinding.MaxReceivedMessageSize = 65536;
+        wsHttpBinding.MessageEncoding = WSMessageEncoding.Text;
+        wsHttpBinding.TextEncoding = Encoding.UTF8;
+
+        wsHttpBinding.ReaderQuotas.MaxDepth = 32;
+        wsHttpBinding.ReaderQuotas.MaxArrayLength = 16384;
+        wsHttpBinding.ReaderQuotas.MaxStringContentLength = 8192;
+        wsHttpBinding.ReaderQuotas.MaxBytesPerRead = 4096;
+        wsHttpBinding.ReaderQuotas.MaxNameTableCharCount = 16384;
+
+        
+
+        // ----------- End Programmatic definition of the SomeServiceServiceBinding --------------
+
+        return wsHttpBinding;
+
+    }
+
+    public Uri ConfigURI()
+    {
+        // ----- Programmatic definition of the Service URI configuration -----
+        Uri URI = new Uri("http://localhost:" + PortVelibs + "/JCDLibrary/Client/");
+
+        return URI;
+    }
+
+    public EndpointIdentity ConfigEndPoint()
+    {
+        // ----- Programmatic definition of the Service EndPointIdentitiy configuration -----
+        EndpointIdentity DNSIdentity = EndpointIdentity.CreateDnsIdentity("tempCert");
+
+        return DNSIdentity;
+    }
+
+
+    public ContractDescription ConfigContractDescription()
+    {
+        // ----- Programmatic definition of the Service ContractDescription Binding -----
+        ContractDescription Contract = ContractDescription.GetContract(typeof(IVelibsRetriever), typeof(VelibsRetriever));
+
+        return Contract;
+    }
     /**
      * Stop the already started web server
      */

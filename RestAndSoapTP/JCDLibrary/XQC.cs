@@ -19,7 +19,7 @@ namespace JCDLibrary
         }
     }
 
-    class VelibsRetriever2 : IVelibsRetriever
+    public partial class WcfEntryPoint : IVelibsRetriever
     {
 
         private const string CITIES_KEY = "cities";
@@ -210,7 +210,7 @@ namespace JCDLibrary
 
     }
 
-    class AdminCommands2 : IAdminCommands
+    public partial class WcfEntryPoint : IAdminCommands
     {
         public string updateCacheDurationCitites(int nbMonths)
         {
