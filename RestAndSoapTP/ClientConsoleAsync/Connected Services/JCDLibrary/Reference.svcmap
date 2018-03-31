@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="278160f1-9264-4bda-b742-c7f293eeb9f1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5384312b-6a78-4462-819e-c0d4710d2650" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost:8733/JCDLibrary/Service1/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8733/JCDLibrary/Client/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="76d2fd59-e219-4391-aee0-a1099d547c81" SourceId="1" SourceUrl="net.tcp://localhost:8733/JCDLibrary/Service1/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="a2d4f6dd-cec3-4b51-98b0-3798e00b93bd" SourceId="1" SourceUrl="net.tcp://localhost:8733/JCDLibrary/Service1/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="9348bdab-10ae-4953-a920-a9cc456eaadd" SourceId="1" SourceUrl="net.tcp://localhost:8733/JCDLibrary/Service1/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="ad3b1761-b73d-4bf6-97f1-d742d523f596" SourceId="1" SourceUrl="net.tcp://localhost:8733/JCDLibrary/Service1/mex" />
-    <MetadataFile FileName="JCDLibrary.xsd" MetadataType="Schema" ID="34d05479-60b2-4750-a784-fa55fd2f0273" SourceId="1" SourceUrl="net.tcp://localhost:8733/JCDLibrary/Service1/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ccc8020c-818c-4a81-9314-59a0199c4567" SourceId="1" SourceUrl="http://localhost:8733/JCDLibrary/Client/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="6f43d131-39ae-4881-b024-6a64e737cf9d" SourceId="1" SourceUrl="http://localhost:8733/JCDLibrary/Client/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="79fc3b96-3e9c-4652-97b6-30fecb2c942b" SourceId="1" SourceUrl="http://localhost:8733/JCDLibrary/Client/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="5712782e-d726-4057-9f70-1d6973525698" SourceId="1" SourceUrl="http://localhost:8733/JCDLibrary/Client/mex" />
+    <MetadataFile FileName="JCDLibrary.xsd" MetadataType="Schema" ID="688b21e1-b129-4f08-bc57-727ca53e49e4" SourceId="1" SourceUrl="http://localhost:8733/JCDLibrary/Client/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

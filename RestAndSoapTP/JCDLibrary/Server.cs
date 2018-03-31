@@ -17,19 +17,30 @@ public class Server
     // Attirbutes to support port selection and standalone mode
     private bool Standalone = false;
     private string PortVelibs = "9090";
-    private string PortAdmin = "9091";
+    //private string PortAdmin = "9091";
     private string Locker = "server.LOCK";
 
     // Web Server used to host services
     private WebServiceHost HostVelibs;
-    private WebServiceHost HostAdmin;
+    //private WebServiceHost HostAdmin;
 
     /**
      * Start the web server on the given port, and host the expected service
      */
     public void start()
     {
+
+
         Console.WriteLine("Starting a WCF self-hosted .Net server... ");
+        //string urltcp = "http://localhost:8733/JCDLibrary/Client/";
+        //string urlhttp = "http://localhost:8734/JCDLibrary/Admin/";
+        //Uri[] baseAddresses = { new Uri(urltcp), new Uri(urlhttp) };
+
+        HostVelibs = new WebServiceHost(typeof(VelibsRetriever), new Uri("http://localhost:8733"));
+
+        HostVelibs.Open();
+
+        /*Console.WriteLine("Starting a WCF self-hosted .Net server... ");
         string url = "net.tcp://" + "localhost" + ":" + PortVelibs;
         
         NetTcpBinding bTCP = new NetTcpBinding();
@@ -47,7 +58,7 @@ public class Server
 
         // Staring the Host server
         HostVelibs.Open();
-        HostAdmin.Open();
+        HostAdmin.Open();*/
 
         Console.WriteLine("\nListening to " + "localhost" + ":" + PortVelibs + "\n");
 
@@ -61,7 +72,7 @@ public class Server
     private void stop()
     {
         HostVelibs.Close();
-        HostAdmin.Close();
+        //HostAdmin.Close();
         Console.WriteLine("Server shutdown complete!");
     }
 

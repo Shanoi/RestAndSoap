@@ -1,17 +1,25 @@
 ﻿using Newtonsoft.Json.Linq;
-using System; 
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Runtime.Caching;
+using System.ServiceModel;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace JCDLibrary
 {
-    class VelibsRetriever : IVelibsRetriever
+    public partial class WcfEntryPoint
+    {
+        public static void Configure(ServiceConfiguration config)
+        {
+            config.LoadFromConfiguration(ConfigurationManager.OpenMappedExeConfiguration(new ExeConfigurationFileMap { ExeConfigFilename = @"App.config" }, ConfigurationUserLevel.None));
+        }
+    }
+
+    class VelibsRetriever2 : IVelibsRetriever
     {
 
         private const string CITIES_KEY = "cities";
@@ -21,10 +29,10 @@ namespace JCDLibrary
         private Dictionary<string, DateTime> lastUpdateStationsGUI = new Dictionary<string, DateTime>();
 
         private Dictionary<string, DateTime> lastUpdateStationsConsole = new Dictionary<string, DateTime>();
-        
+
         public List<string> getCities()
         {
-            
+
             List<string> cities = cache.Cache[CITIES_KEY] as List<string>;
 
             if (cities == null)
@@ -120,7 +128,7 @@ namespace JCDLibrary
                 result += item.ToString() + "\n\n";
 
             }
-            
+
             return result;
         }
 
@@ -201,4 +209,22 @@ namespace JCDLibrary
         }
 
     }
+
+    class AdminCommands2 : IAdminCommands
+    {
+        public string updateCacheDurationCitites(int nbMonths)
+        {
+            CacheVelibs cache = new CacheVelibs();
+            cache.NbMonths = nbMonths;
+            return "The city's cache is kept for " + nbMonths + " months now\n";
+        }
+
+        public string updateCacheDurationStations(int nbMinutes)
+        {
+            CacheVelibs cache = new CacheVelibs();
+            cache.NbMinutes = nbMinutes;
+            return "The stations' cache is kept for " + nbMinutes + " minutes now\n";
+        }
+    }
+
 }

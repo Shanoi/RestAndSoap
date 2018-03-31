@@ -39,6 +39,7 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Caching" />
@@ -57,6 +58,7 @@
     <Compile Include="Server.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="VelibsRetriever.cs" />
+    <Compile Include="XQC.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
