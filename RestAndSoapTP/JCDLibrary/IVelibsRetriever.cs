@@ -24,6 +24,6 @@ namespace JCDLibrary
         List<string> getFidelityLevels();
 
         [OperationContract]
-        DateTime getLastUpdate();
+        DateTime getLastUpdate(string city);
     }
 }

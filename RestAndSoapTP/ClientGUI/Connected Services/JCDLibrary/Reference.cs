@@ -149,6 +149,12 @@ namespace ClientGUI.JCDLibrary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getFidelityLevels", ReplyAction="http://tempuri.org/IVelibsRetriever/getFidelityLevelsResponse")]
         System.Threading.Tasks.Task<string[]> getFidelityLevelsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getLastUpdate", ReplyAction="http://tempuri.org/IVelibsRetriever/getLastUpdateResponse")]
+        System.DateTime getLastUpdate(string city);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getLastUpdate", ReplyAction="http://tempuri.org/IVelibsRetriever/getLastUpdateResponse")]
+        System.Threading.Tasks.Task<System.DateTime> getLastUpdateAsync(string city);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -208,6 +214,14 @@ namespace ClientGUI.JCDLibrary {
         
         public System.Threading.Tasks.Task<string[]> getFidelityLevelsAsync() {
             return base.Channel.getFidelityLevelsAsync();
+        }
+        
+        public System.DateTime getLastUpdate(string city) {
+            return base.Channel.getLastUpdate(city);
+        }
+        
+        public System.Threading.Tasks.Task<System.DateTime> getLastUpdateAsync(string city) {
+            return base.Channel.getLastUpdateAsync(city);
         }
     }
 }

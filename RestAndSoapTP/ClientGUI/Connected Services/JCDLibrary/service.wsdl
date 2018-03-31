@@ -65,6 +65,12 @@
   <wsdl:message name="IVelibsRetriever_getFidelityLevels_OutputMessage">
     <wsdl:part name="parameters" element="tns:getFidelityLevelsResponse" />
   </wsdl:message>
+  <wsdl:message name="IVelibsRetriever_getLastUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:getLastUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IVelibsRetriever_getLastUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getLastUpdateResponse" />
+  </wsdl:message>
   <wsdl:portType name="IVelibsRetriever">
     <wsdl:operation name="getCities">
       <wsdl:input wsaw:Action="http://tempuri.org/IVelibsRetriever/getCities" message="tns:IVelibsRetriever_getCities_InputMessage" />
@@ -81,6 +87,10 @@
     <wsdl:operation name="getFidelityLevels">
       <wsdl:input wsaw:Action="http://tempuri.org/IVelibsRetriever/getFidelityLevels" message="tns:IVelibsRetriever_getFidelityLevels_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IVelibsRetriever/getFidelityLevelsResponse" message="tns:IVelibsRetriever_getFidelityLevels_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getLastUpdate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVelibsRetriever/getLastUpdate" message="tns:IVelibsRetriever_getLastUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVelibsRetriever/getLastUpdateResponse" message="tns:IVelibsRetriever_getLastUpdate_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IVelibsRetriever" type="tns:IVelibsRetriever">
@@ -116,6 +126,15 @@
     </wsdl:operation>
     <wsdl:operation name="getFidelityLevels">
       <soap12:operation soapAction="http://tempuri.org/IVelibsRetriever/getFidelityLevels" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLastUpdate">
+      <soap12:operation soapAction="http://tempuri.org/IVelibsRetriever/getLastUpdate" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

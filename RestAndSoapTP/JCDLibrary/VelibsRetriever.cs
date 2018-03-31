@@ -19,9 +19,9 @@ namespace JCDLibrary
 
         private CacheVelibs cache = new CacheVelibs(1, 5);
 
-        private DateTime lastUpdateStationsGUI;
+        private Dictionary<string, DateTime> lastUpdateStationsGUI = new Dictionary<string, DateTime>();
 
-        private DateTime lastUpdateStationsConsole;
+        private Dictionary<string, DateTime> lastUpdateStationsConsole = new Dictionary<string, DateTime>();
 
         public List<string> getCities()
         {
@@ -62,7 +62,7 @@ namespace JCDLibrary
             string key = city + "string";
             string data = cache.Cache[key] as string;
 
-            if (data == null || DateTime.Now >= lastUpdateStationsConsole + cache.Fidelity[fidelity])
+            if (data == null || DateTime.Now >= lastUpdateStationsConsole[city] + cache.Fidelity[fidelity])
             {
 
                 WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
@@ -79,7 +79,7 @@ namespace JCDLibrary
                     data = reader.ReadToEnd();
 
                     cache.setCacheStation(key, data);
-                    lastUpdateStationsConsole = DateTime.Now;
+                    lastUpdateStationsConsole[city] = DateTime.Now;
                 }
                 catch (Exception)
                 {
@@ -130,9 +130,9 @@ namespace JCDLibrary
             return cache.Fidelity.Keys.ToList();
         }
 
-        public DateTime getLastUpdate()
+        public DateTime getLastUpdate(string city)
         {
-            return lastUpdateStationsGUI;
+            return lastUpdateStationsGUI[city];
         }
 
         public async Task<List<Station>> getListStationFromCity(string city, string station, string fidelity)
@@ -142,14 +142,14 @@ namespace JCDLibrary
             List<Station> stations = cache.Cache[key] as List<Station>;
 
 
-            if (stations == null || DateTime.Now >= lastUpdateStationsGUI + cache.Fidelity[fidelity])
+            if (stations == null || DateTime.Now >= lastUpdateStationsGUI[city] + cache.Fidelity[fidelity])
             {
 
                 stations = await GetListStationAsync(city);
 
                 cache.setCacheStation(key, stations);
 
-                lastUpdateStationsGUI = DateTime.Now;
+                lastUpdateStationsGUI[city] = DateTime.Now;
 
             }
 
@@ -164,7 +164,7 @@ namespace JCDLibrary
 
                 }
             }
-            
+
             return result;
         }
 
@@ -173,7 +173,7 @@ namespace JCDLibrary
 
             WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract=" + city + "&apiKey=7efd1067c82b1c9593faa098b1f7f5ea02cd272e");
 
-            /*WebResponse response = */
+            //WebResponse response = 
             WebResponse response = await request.GetResponseAsync();
 
             // Get the stream containing content returned by the server.
@@ -198,7 +198,7 @@ namespace JCDLibrary
             }
 
             return sts;
-
+            
         }
 
     }

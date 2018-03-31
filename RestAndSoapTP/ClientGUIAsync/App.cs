@@ -46,9 +46,11 @@ namespace ClientGUIAsync
 
             stations.Clear();
 
-            stations = await client.getListStationFromCityAsync(cBoxVilles.SelectedItem.ToString(), txtStation.Text, cbFidelity.SelectedItem.ToString());
+            string ville = cBoxVilles.SelectedItem.ToString();
 
-            lblLastUpdateValue.Text = (await client.getLastUpdateAsync()).ToString("h:mm:ss tt");
+            stations = await client.getListStationFromCityAsync(ville, txtStation.Text, cbFidelity.SelectedItem.ToString());
+
+            lblLastUpdateValue.Text = (await client.getLastUpdateAsync(ville)).ToString("h:mm:ss tt");
 
             listItems.SelectedIndexChanged -= listItems_SelectedIndexChanged;
             listItems.DataSource = null;

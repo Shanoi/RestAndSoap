@@ -151,10 +151,10 @@ namespace ClientGUIAsync.JCDLibrary {
         System.Threading.Tasks.Task<System.Collections.Generic.List<string>> getFidelityLevelsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getLastUpdate", ReplyAction="http://tempuri.org/IVelibsRetriever/getLastUpdateResponse")]
-        System.DateTime getLastUpdate();
+        System.DateTime getLastUpdate(string city);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getLastUpdate", ReplyAction="http://tempuri.org/IVelibsRetriever/getLastUpdateResponse")]
-        System.Threading.Tasks.Task<System.DateTime> getLastUpdateAsync();
+        System.Threading.Tasks.Task<System.DateTime> getLastUpdateAsync(string city);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -216,12 +216,12 @@ namespace ClientGUIAsync.JCDLibrary {
             return base.Channel.getFidelityLevelsAsync();
         }
         
-        public System.DateTime getLastUpdate() {
-            return base.Channel.getLastUpdate();
+        public System.DateTime getLastUpdate(string city) {
+            return base.Channel.getLastUpdate(city);
         }
         
-        public System.Threading.Tasks.Task<System.DateTime> getLastUpdateAsync() {
-            return base.Channel.getLastUpdateAsync();
+        public System.Threading.Tasks.Task<System.DateTime> getLastUpdateAsync(string city) {
+            return base.Channel.getLastUpdateAsync(city);
         }
     }
 }

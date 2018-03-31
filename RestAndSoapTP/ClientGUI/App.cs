@@ -46,7 +46,11 @@ namespace ClientGUI
 
             stations.Clear();
 
+            string ville = cBoxVilles.SelectedItem.ToString();
+
             stations = client.getListStationFromCity(cBoxVilles.SelectedItem.ToString(), txtStation.Text, cbFidelity.SelectedItem.ToString()).ToList<Station>();
+
+            lblLastUpdateValue.Text = (client.getLastUpdate(ville)).ToString("h:mm:ss tt");
 
             listItems.SelectedIndexChanged -= listItems_SelectedIndexChanged;
             listItems.DataSource = null;
