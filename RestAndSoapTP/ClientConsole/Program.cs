@@ -91,13 +91,13 @@ namespace ClientConsole
 
                         case "city":
 
-                            city = s.Split(' ')[1];
+                            city = s.Split(' ')[1].Replace('_', ' ');
 
                             break;
 
                         case "station":
 
-                            Console.WriteLine(client.getDataFromCity(city, s.Split(' ')[1], fidelityLevel));
+                            Console.WriteLine(client.getDataFromCity(city, s.Split(' ')[1].Replace('_', ' '), fidelityLevel));
 
                             break;
 
@@ -126,16 +126,9 @@ namespace ClientConsole
                     {
                         case "station":
 
-                            city = s.Split(' ')[2];
-
-                            /*List<Station> stations = client.getListStationFromCity(city, s.Split(' ')[1]).ToList<Station>();
-
-                            foreach (Station station in stations)
-                            {
-                                Console.WriteLine(stationToString(station)+ "\n");
-                            }*/
-
-                            Console.WriteLine(client.getDataFromCity(city, s.Split(' ')[1], fidelityLevel));
+                            city = s.Split(' ')[2].Replace('_', ' ');
+                            
+                            Console.WriteLine(client.getDataFromCity(city, s.Split(' ')[1].Replace('_', ' '), fidelityLevel));
 
                             break;
 
