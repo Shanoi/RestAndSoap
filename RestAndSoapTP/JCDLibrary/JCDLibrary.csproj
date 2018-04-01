@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AdminCommands.cs" />
     <Compile Include="CacheVelibs.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="IAdminCommands.cs" />
     <Compile Include="IVelibsRetriever.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

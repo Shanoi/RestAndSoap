@@ -31,10 +31,10 @@ public class Server
      */
     public void start()
     {
-        string url = "http://localhost:"+ PortVelibs + "/JCDLibrary";
+        string url = "net.tcp://localhost:" + PortVelibs + "/JCDLibrary";
 
         NetTcpBinding b = new NetTcpBinding();
-
+        
         HostVelibs = new ServiceHost(typeof(VelibsRetriever), new Uri(url));
 
         // Check to see if the service host already has a ServiceMetadataBehavior
@@ -45,20 +45,21 @@ public class Server
             smb = new ServiceMetadataBehavior();
         }
 
-        smb.HttpGetEnabled = true;
-        smb.HttpsGetEnabled = true;
+        smb.HttpGetEnabled = false;
+        smb.HttpsGetEnabled = false;
+        
         HostVelibs.Description.Behaviors.Add(smb);
 
         HostVelibs.Description.Behaviors.Find<ServiceDebugBehavior>().IncludeExceptionDetailInFaults = true;
 
         // Add MEX endpoint
-        HostVelibs.AddServiceEndpoint(
+       /* HostVelibs.AddServiceEndpoint(
           ServiceMetadataBehavior.MexContractName,
           MetadataExchangeBindings.CreateMexHttpBinding(),
           "mex"
-        );
+        );*/
 
-        HostVelibs.AddServiceEndpoint(typeof(IVelibsRetriever), b, "net.tcp://localhost:8738/JCDLibrary/ClientTCP/");
+        HostVelibs.AddServiceEndpoint(typeof(IVelibsRetriever), b, "/Client");
         //Host.AddServiceEndpoint(typeof(IAdminServices), b, "/WS/AdminService");
 
         //HostVelibs = new ServiceHost(typeof(VelibsRetriever), new Uri("http://localhost:" + PortVelibs));

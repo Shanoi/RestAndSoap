@@ -14,7 +14,7 @@ namespace ClientConsole
 
         static void Main(string[] args)
         {
-            VelibsRetrieverClient client = new VelibsRetrieverClient();
+            VelibsRetrieverClient client = new VelibsRetrieverClient("NetTcpBinding_IVelibsRetriever");
 
             string commands = "help: Display the help\n" +
                 "fidelity [Bronze | Silver | Gold]: choose the level of fidelity for the cache fidelity of the station, or display the different fidelity programs\n" +
