@@ -58,7 +58,7 @@
     <Compile Include="Server.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="VelibsRetriever.cs" />
-    <Compile Include="XQC.cs" />
+    <Compile Include="WcfEntryPoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

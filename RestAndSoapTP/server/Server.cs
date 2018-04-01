@@ -31,11 +31,10 @@ public class Server
      */
     public void start()
     {
-
-        string url = "http://localhost:8733/JCDLibrary";
+        string url = "http://localhost:"+ PortVelibs + "/JCDLibrary";
 
         BasicHttpBinding b = new BasicHttpBinding();
-      
+
         HostVelibs = new ServiceHost(typeof(VelibsRetriever), new Uri(url));
 
         // Check to see if the service host already has a ServiceMetadataBehavior
@@ -65,10 +64,10 @@ public class Server
         //HostVelibs = new ServiceHost(typeof(VelibsRetriever), new Uri("http://localhost:" + PortVelibs));
         //HostVelibs.AddServiceEndpoint(typeof(IAdminCommands), new BasicHttpBinding(), "admin");
         //HostVelibs.Description.Behaviors.Find<ServiceDebugBehavior>().IncludeExceptionDetailInFaults = true;
-       // HostVelibs.AddServiceEndpoint(typeof(IVelibsRetriever), new BasicHttpBinding(), "JCDLibrary/Client");
+        // HostVelibs.AddServiceEndpoint(typeof(IVelibsRetriever), new BasicHttpBinding(), "JCDLibrary/Client");
         /*ServiceEndpoint endpoint = host.AddServiceEndpoint(typeof(IService), new WebHttpBinding(), "Web");
         endpoint.Behaviors.Add(new WebHttpBehavior());*/
-        
+
 
         HostVelibs.Open();
 

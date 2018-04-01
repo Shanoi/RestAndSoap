@@ -14,10 +14,10 @@ namespace ClientConsole
 
         static void Main(string[] args)
         {
-            VelibsRetrieverClient client = new VelibsRetrieverClient();
+            VelibsRetrieverClient client = new VelibsRetrieverClient("BasicHttpBinding_IVelibsRetriever");
 
             string commands = "help: Display the help\n" +
-                "fidelity [Bronze | Silver | Gold]: choose the level of fidelity for the cache fidelity of the station, or display the different fidelity programs\n" +
+                "fidelity [Bronze | Silver | Gold | ...]: choose the level of fidelity for the cache fidelity of the station, or display the different fidelity programs\n" +
                 "cities: Display the list of the available cities\n" +
                 "city <City Name>: Choose the city\n" +
                 "station <Station Name> [<City Name>]: Display information about stations corresponding to the name\n" +

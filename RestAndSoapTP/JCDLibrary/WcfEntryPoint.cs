@@ -11,13 +11,6 @@ using System.Threading.Tasks;
 
 namespace JCDLibrary
 {
-    public partial class WcfEntryPoint
-    {
-        public static void Configure(ServiceConfiguration config)
-        {
-            config.LoadFromConfiguration(ConfigurationManager.OpenMappedExeConfiguration(new ExeConfigurationFileMap { ExeConfigFilename = @"App.config" }, ConfigurationUserLevel.None));
-        }
-    }
 
     public partial class WcfEntryPoint : IVelibsRetriever
     {
