@@ -407,9 +407,9 @@
   </wsdl:binding>
   <wsdl:service name="VelibsRetriever">
     <wsdl:port name="WSHttpBinding_IVelibsRetriever" binding="tns:WSHttpBinding_IVelibsRetriever">
-      <soap12:address location="http://localhost:8733/JCDLibrary/Client/" />
+      <soap12:address location="http://localhost:8733/JCDLibrary/ClientWS/" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://localhost:8733/JCDLibrary/Client/</wsa10:Address>
+        <wsa10:Address>http://localhost:8733/JCDLibrary/ClientWS/</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Dns>localhost</Dns>
         </Identity>

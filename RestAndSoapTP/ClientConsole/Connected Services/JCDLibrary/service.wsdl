@@ -286,35 +286,6 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IVelibsRetriever_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
-        <wsaw:UsingAddressing />
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
@@ -375,54 +346,6 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IVelibsRetriever/getLastUpdateResponse" message="tns:IVelibsRetriever_getLastUpdate_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_IVelibsRetriever" type="tns:IVelibsRetriever">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="getCities">
-      <soap:operation soapAction="http://tempuri.org/IVelibsRetriever/getCities" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getDataFromCity">
-      <soap:operation soapAction="http://tempuri.org/IVelibsRetriever/getDataFromCity" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getListStationFromCity">
-      <soap:operation soapAction="http://tempuri.org/IVelibsRetriever/getListStationFromCity" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getFidelityLevels">
-      <soap:operation soapAction="http://tempuri.org/IVelibsRetriever/getFidelityLevels" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getLastUpdate">
-      <soap:operation soapAction="http://tempuri.org/IVelibsRetriever/getLastUpdate" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
   <wsdl:binding name="WSHttpBinding_IVelibsRetriever" type="tns:IVelibsRetriever">
     <wsp:PolicyReference URI="#WSHttpBinding_IVelibsRetriever_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -482,72 +405,11 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="NetTcpBinding_IVelibsRetriever" type="tns:IVelibsRetriever">
-    <wsp:PolicyReference URI="#NetTcpBinding_IVelibsRetriever_policy" />
-    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="getCities">
-      <soap12:operation soapAction="http://tempuri.org/IVelibsRetriever/getCities" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getDataFromCity">
-      <soap12:operation soapAction="http://tempuri.org/IVelibsRetriever/getDataFromCity" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getListStationFromCity">
-      <soap12:operation soapAction="http://tempuri.org/IVelibsRetriever/getListStationFromCity" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getFidelityLevels">
-      <soap12:operation soapAction="http://tempuri.org/IVelibsRetriever/getFidelityLevels" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getLastUpdate">
-      <soap12:operation soapAction="http://tempuri.org/IVelibsRetriever/getLastUpdate" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
   <wsdl:service name="VelibsRetriever">
-    <wsdl:port name="BasicHttpBinding_IVelibsRetriever" binding="tns:BasicHttpBinding_IVelibsRetriever">
-      <soap:address location="http://localhost:8733/JCDLibrary/Client/" />
-    </wsdl:port>
     <wsdl:port name="WSHttpBinding_IVelibsRetriever" binding="tns:WSHttpBinding_IVelibsRetriever">
       <soap12:address location="http://localhost:8733/JCDLibrary/ClientWS/" />
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:8733/JCDLibrary/ClientWS/</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Dns>localhost</Dns>
-        </Identity>
-      </wsa10:EndpointReference>
-    </wsdl:port>
-    <wsdl:port name="NetTcpBinding_IVelibsRetriever" binding="tns:NetTcpBinding_IVelibsRetriever">
-      <soap12:address location="net.tcp://localhost:8738/JCDLibrary/ClientTCP/" />
-      <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8738/JCDLibrary/ClientTCP/</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Dns>localhost</Dns>
         </Identity>
