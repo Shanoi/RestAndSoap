@@ -55,10 +55,8 @@
     <Compile Include="IAdminCommands.cs" />
     <Compile Include="IVelibsRetriever.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="VelibsRetriever.cs" />
-    <Compile Include="WcfEntryPoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
