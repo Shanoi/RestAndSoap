@@ -86,7 +86,7 @@ namespace ClientConsoleAsync
 
                         case "city":
 
-                            city = s.Split(' ')[1];
+                            city = s.Split(' ')[1].Replace('_', ' ');
 
                             break;
 
@@ -121,7 +121,7 @@ namespace ClientConsoleAsync
                     {
                         case "station":
 
-                            city = s.Split(' ')[2];
+                            city = s.Split(' ')[2].Replace('_', ' ');
 
                             /*List<Station> stations = client.getListStationFromCity(city, s.Split(' ')[1]).ToList<Station>();
 
@@ -182,7 +182,7 @@ namespace ClientConsoleAsync
 
             try
             {
-                Task<string> task = new VelibsRetrieverClient().getDataFromCityAsync(city, station, fidelity);
+                Task<string> task = new VelibsRetrieverClient().getDataFromCityAsync(city.Replace('_', ' '), station.Replace('_', ' '), fidelity);
                 if (task == await Task.WhenAny(task, Task.Delay(10000000)))
                 {
                     Console.WriteLine(await task);
