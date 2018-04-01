@@ -123,13 +123,6 @@ namespace ClientConsoleAsync
 
                             city = s.Split(' ')[2].Replace('_', ' ');
 
-                            /*List<Station> stations = client.getListStationFromCity(city, s.Split(' ')[1]).ToList<Station>();
-
-                            foreach (Station station in stations)
-                            {
-                                Console.WriteLine(stationToString(station)+ "\n");
-                            }*/
-
                             getStationData(city, s.Split(' ')[1], fidelityLevel).ContinueWith(delegate { Console.WriteLine("Done"); });
 
                             break;

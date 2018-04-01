@@ -63,7 +63,7 @@ namespace ClientGUI
 
         private void listItems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //msgBox.Show(listItems.SelectedItem.ToString());
+
             MsgBox msgBox = new MsgBox();
             msgBox.Text = ((Station)listItems.SelectedItem).Name;
             msgBox.Show(stationToString((Station)listItems.SelectedItem));
