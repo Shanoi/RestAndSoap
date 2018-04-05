@@ -31,5 +31,9 @@ namespace JCDLibrary
 
         [OperationContract]
         void SubscribeRetrieveFinishedEvent();
+
+        [OperationContract]
+        void fetch(string city, string station);
+
     }
 }

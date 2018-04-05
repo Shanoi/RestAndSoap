@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using System; 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +9,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace JCDLibrary
 {
@@ -25,10 +26,10 @@ namespace JCDLibrary
         private Dictionary<string, DateTime> lastUpdateStationsGUI = new Dictionary<string, DateTime>();
 
         private Dictionary<string, DateTime> lastUpdateStationsConsole = new Dictionary<string, DateTime>();
-        
+
         public List<string> getCities()
         {
-            
+
             List<string> cities = cache.Cache[CITIES_KEY] as List<string>;
 
             if (cities == null)
@@ -56,7 +57,7 @@ namespace JCDLibrary
 
             }
 
-            m_Event1(cities.ToString());
+            m_Event1(cities.ToString() + "--- " + DateTime.Now);
             m_Event2();
 
             return cities;
@@ -128,6 +129,8 @@ namespace JCDLibrary
 
             }
 
+            result += DateTime.Now;
+
             m_Event1(result);
             m_Event2();
 
@@ -157,7 +160,7 @@ namespace JCDLibrary
                 stations = await GetListStationAsync(city);
 
                 cache.setCacheStation(key, stations);
-                
+
                 lastUpdateStationsGUI[city] = DateTime.Now;
 
             }
@@ -224,5 +227,36 @@ namespace JCDLibrary
 
         }
 
+        private System.Timers.Timer timer;
+
+        public void fetch(string city, string station)
+        {
+
+            /* var autoEvent = new AutoResetEvent(false);
+
+
+             DataGetter d = new DataGetter("lyon", "10007", "Bronze");
+
+             //x => getDataFromCity("lyon", "10007", "Bronze")
+             var stateTimer = new Timer(d.fff,
+                                   autoEvent, 1000, 1000);*/
+
+            timer = new System.Timers.Timer(10000);
+            timer.Enabled = true;
+            timer.Elapsed += new ElapsedEventHandler(UpdateProperty);
+            timer.Start();
+
+        }
+
+
+        private void UpdateProperty(object state, ElapsedEventArgs e)
+        {
+
+            getDataFromCity("lyon", "10007", "Bronze");
+
+        }
+
+
     }
+
 }

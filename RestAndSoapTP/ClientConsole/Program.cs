@@ -40,6 +40,8 @@ namespace ClientConsole
 
             objClient.getFidelityLevels();
 
+            objClient.fetch("lyon", "100007");
+
             string fidelityLevel = "Bronze";
 
             while (s != "exit")

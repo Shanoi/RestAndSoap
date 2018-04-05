@@ -167,6 +167,12 @@ namespace ClientConsole.JCDLibrary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/SubscribeRetrieveFinishedEvent", ReplyAction="http://tempuri.org/IVelibsRetriever/SubscribeRetrieveFinishedEventResponse")]
         System.Threading.Tasks.Task SubscribeRetrieveFinishedEventAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/fetch", ReplyAction="http://tempuri.org/IVelibsRetriever/fetchResponse")]
+        void fetch(string city, string station);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/fetch", ReplyAction="http://tempuri.org/IVelibsRetriever/fetchResponse")]
+        System.Threading.Tasks.Task fetchAsync(string city, string station);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -261,6 +267,14 @@ namespace ClientConsole.JCDLibrary {
         
         public System.Threading.Tasks.Task SubscribeRetrieveFinishedEventAsync() {
             return base.Channel.SubscribeRetrieveFinishedEventAsync();
+        }
+        
+        public void fetch(string city, string station) {
+            base.Channel.fetch(city, station);
+        }
+        
+        public System.Threading.Tasks.Task fetchAsync(string city, string station) {
+            return base.Channel.fetchAsync(city, station);
         }
     }
 }
