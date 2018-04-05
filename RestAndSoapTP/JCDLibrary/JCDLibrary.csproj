@@ -55,6 +55,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="IAdminCommands.cs" />
     <Compile Include="IVelibsRetriever.cs" />
+    <Compile Include="IVelibsRetrieverEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="VelibsRetriever.cs" />

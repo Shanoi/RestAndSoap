@@ -5,14 +5,18 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.Caching;
+using System.ServiceModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace JCDLibrary
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     class VelibsRetriever : IVelibsRetriever
     {
+        static Action<string> m_Event1 = delegate { };
+        static Action m_Event2 = delegate { };
 
         private const string CITIES_KEY = "cities";
 
@@ -51,6 +55,9 @@ namespace JCDLibrary
                 cache.setCacheCities(CITIES_KEY, cities);
 
             }
+
+            m_Event1(cities.ToString());
+            m_Event2();
 
             return cities;
 
@@ -120,7 +127,10 @@ namespace JCDLibrary
                 result += item.ToString() + "\n\n";
 
             }
-            
+
+            m_Event1(result);
+            m_Event2();
+
             return result;
         }
 
@@ -165,6 +175,20 @@ namespace JCDLibrary
             }
 
             return result;
+        }
+
+        public void SubscribeRetrievedEvent()
+        {
+            IVelibsRetrieverEvents subscriber =
+            OperationContext.Current.GetCallbackChannel<IVelibsRetrieverEvents>();
+            m_Event1 += subscriber.Retrieved;
+        }
+
+        public void SubscribeRetrieveFinishedEvent()
+        {
+            IVelibsRetrieverEvents subscriber =
+            OperationContext.Current.GetCallbackChannel<IVelibsRetrieverEvents>();
+            m_Event2 += subscriber.RetrieveFinished;
         }
 
         private async Task<List<Station>> GetListStationAsync(string city)

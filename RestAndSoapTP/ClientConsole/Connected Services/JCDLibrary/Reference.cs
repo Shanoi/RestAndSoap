@@ -123,7 +123,7 @@ namespace ClientConsole.JCDLibrary {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="JCDLibrary.IVelibsRetriever")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="JCDLibrary.IVelibsRetriever", CallbackContract=typeof(ClientConsole.JCDLibrary.IVelibsRetrieverCallback))]
     public interface IVelibsRetriever {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getCities", ReplyAction="http://tempuri.org/IVelibsRetriever/getCitiesResponse")]
@@ -155,6 +155,28 @@ namespace ClientConsole.JCDLibrary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getLastUpdate", ReplyAction="http://tempuri.org/IVelibsRetriever/getLastUpdateResponse")]
         System.Threading.Tasks.Task<System.DateTime> getLastUpdateAsync(string city);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/SubscribeRetrievedEvent", ReplyAction="http://tempuri.org/IVelibsRetriever/SubscribeRetrievedEventResponse")]
+        void SubscribeRetrievedEvent();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/SubscribeRetrievedEvent", ReplyAction="http://tempuri.org/IVelibsRetriever/SubscribeRetrievedEventResponse")]
+        System.Threading.Tasks.Task SubscribeRetrievedEventAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/SubscribeRetrieveFinishedEvent", ReplyAction="http://tempuri.org/IVelibsRetriever/SubscribeRetrieveFinishedEventResponse")]
+        void SubscribeRetrieveFinishedEvent();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/SubscribeRetrieveFinishedEvent", ReplyAction="http://tempuri.org/IVelibsRetriever/SubscribeRetrieveFinishedEventResponse")]
+        System.Threading.Tasks.Task SubscribeRetrieveFinishedEventAsync();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IVelibsRetrieverCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IVelibsRetriever/Retrieved")]
+        void Retrieved(string res);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IVelibsRetriever/RetrieveFinished")]
+        void RetrieveFinished();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -163,25 +185,26 @@ namespace ClientConsole.JCDLibrary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class VelibsRetrieverClient : System.ServiceModel.ClientBase<ClientConsole.JCDLibrary.IVelibsRetriever>, ClientConsole.JCDLibrary.IVelibsRetriever {
+    public partial class VelibsRetrieverClient : System.ServiceModel.DuplexClientBase<ClientConsole.JCDLibrary.IVelibsRetriever>, ClientConsole.JCDLibrary.IVelibsRetriever {
         
-        public VelibsRetrieverClient() {
+        public VelibsRetrieverClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public VelibsRetrieverClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public VelibsRetrieverClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public VelibsRetrieverClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public VelibsRetrieverClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public VelibsRetrieverClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public VelibsRetrieverClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public VelibsRetrieverClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public VelibsRetrieverClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
         public string[] getCities() {
@@ -222,6 +245,22 @@ namespace ClientConsole.JCDLibrary {
         
         public System.Threading.Tasks.Task<System.DateTime> getLastUpdateAsync(string city) {
             return base.Channel.getLastUpdateAsync(city);
+        }
+        
+        public void SubscribeRetrievedEvent() {
+            base.Channel.SubscribeRetrievedEvent();
+        }
+        
+        public System.Threading.Tasks.Task SubscribeRetrievedEventAsync() {
+            return base.Channel.SubscribeRetrievedEventAsync();
+        }
+        
+        public void SubscribeRetrieveFinishedEvent() {
+            base.Channel.SubscribeRetrieveFinishedEvent();
+        }
+        
+        public System.Threading.Tasks.Task SubscribeRetrieveFinishedEventAsync() {
+            return base.Channel.SubscribeRetrieveFinishedEventAsync();
         }
     }
 }

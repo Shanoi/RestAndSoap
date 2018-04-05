@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JCDLibrary
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IVelibsRetrieverEvents))]
     public interface IVelibsRetriever
     {
 
@@ -25,5 +25,11 @@ namespace JCDLibrary
 
         [OperationContract]
         DateTime getLastUpdate(string city);
+
+        [OperationContract]
+        void SubscribeRetrievedEvent();
+
+        [OperationContract]
+        void SubscribeRetrieveFinishedEvent();
     }
 }

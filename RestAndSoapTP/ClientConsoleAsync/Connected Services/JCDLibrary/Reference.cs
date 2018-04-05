@@ -127,10 +127,10 @@ namespace ClientConsoleAsync.JCDLibrary {
     public interface IVelibsRetriever {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getCities", ReplyAction="http://tempuri.org/IVelibsRetriever/getCitiesResponse")]
-        System.Collections.Generic.List<string> getCities();
+        string[] getCities();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getCities", ReplyAction="http://tempuri.org/IVelibsRetriever/getCitiesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> getCitiesAsync();
+        System.Threading.Tasks.Task<string[]> getCitiesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getDataFromCity", ReplyAction="http://tempuri.org/IVelibsRetriever/getDataFromCityResponse")]
         string getDataFromCity(string city, string station, string fidelity);
@@ -139,16 +139,16 @@ namespace ClientConsoleAsync.JCDLibrary {
         System.Threading.Tasks.Task<string> getDataFromCityAsync(string city, string station, string fidelity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getListStationFromCity", ReplyAction="http://tempuri.org/IVelibsRetriever/getListStationFromCityResponse")]
-        System.Collections.Generic.List<ClientConsoleAsync.JCDLibrary.Station> getListStationFromCity(string city, string station, string fidelity);
+        ClientConsoleAsync.JCDLibrary.Station[] getListStationFromCity(string city, string station, string fidelity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getListStationFromCity", ReplyAction="http://tempuri.org/IVelibsRetriever/getListStationFromCityResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<ClientConsoleAsync.JCDLibrary.Station>> getListStationFromCityAsync(string city, string station, string fidelity);
+        System.Threading.Tasks.Task<ClientConsoleAsync.JCDLibrary.Station[]> getListStationFromCityAsync(string city, string station, string fidelity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getFidelityLevels", ReplyAction="http://tempuri.org/IVelibsRetriever/getFidelityLevelsResponse")]
-        System.Collections.Generic.List<string> getFidelityLevels();
+        string[] getFidelityLevels();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getFidelityLevels", ReplyAction="http://tempuri.org/IVelibsRetriever/getFidelityLevelsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> getFidelityLevelsAsync();
+        System.Threading.Tasks.Task<string[]> getFidelityLevelsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibsRetriever/getLastUpdate", ReplyAction="http://tempuri.org/IVelibsRetriever/getLastUpdateResponse")]
         System.DateTime getLastUpdate(string city);
@@ -184,11 +184,11 @@ namespace ClientConsoleAsync.JCDLibrary {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<string> getCities() {
+        public string[] getCities() {
             return base.Channel.getCities();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> getCitiesAsync() {
+        public System.Threading.Tasks.Task<string[]> getCitiesAsync() {
             return base.Channel.getCitiesAsync();
         }
         
@@ -200,19 +200,19 @@ namespace ClientConsoleAsync.JCDLibrary {
             return base.Channel.getDataFromCityAsync(city, station, fidelity);
         }
         
-        public System.Collections.Generic.List<ClientConsoleAsync.JCDLibrary.Station> getListStationFromCity(string city, string station, string fidelity) {
+        public ClientConsoleAsync.JCDLibrary.Station[] getListStationFromCity(string city, string station, string fidelity) {
             return base.Channel.getListStationFromCity(city, station, fidelity);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<ClientConsoleAsync.JCDLibrary.Station>> getListStationFromCityAsync(string city, string station, string fidelity) {
+        public System.Threading.Tasks.Task<ClientConsoleAsync.JCDLibrary.Station[]> getListStationFromCityAsync(string city, string station, string fidelity) {
             return base.Channel.getListStationFromCityAsync(city, station, fidelity);
         }
         
-        public System.Collections.Generic.List<string> getFidelityLevels() {
+        public string[] getFidelityLevels() {
             return base.Channel.getFidelityLevels();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> getFidelityLevelsAsync() {
+        public System.Threading.Tasks.Task<string[]> getFidelityLevelsAsync() {
             return base.Channel.getFidelityLevelsAsync();
         }
         
