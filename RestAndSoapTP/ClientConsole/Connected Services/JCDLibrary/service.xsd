@@ -95,6 +95,7 @@
   <xs:element name="fetch">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="duration" type="xs:int" />
         <xs:element minOccurs="0" name="city" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="station" nillable="true" type="xs:string" />
       </xs:sequence>

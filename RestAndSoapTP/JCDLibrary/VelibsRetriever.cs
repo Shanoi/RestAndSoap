@@ -229,8 +229,14 @@ namespace JCDLibrary
 
         private System.Timers.Timer timer;
 
-        public void fetch(string city, string station)
+        private string s;
+        private string c;
+        private int duration;
+
+        public void fetch(int duration, string city, string station)
         {
+            c = city;
+            s = station;
 
             /* var autoEvent = new AutoResetEvent(false);
 
@@ -241,7 +247,7 @@ namespace JCDLibrary
              var stateTimer = new Timer(d.fff,
                                    autoEvent, 1000, 1000);*/
 
-            timer = new System.Timers.Timer(10000);
+            timer = new System.Timers.Timer(1000 * duration);
             timer.Enabled = true;
             timer.Elapsed += new ElapsedEventHandler(UpdateProperty);
             timer.Start();
@@ -252,7 +258,7 @@ namespace JCDLibrary
         private void UpdateProperty(object state, ElapsedEventArgs e)
         {
 
-            getDataFromCity("lyon", "10007", "Bronze");
+            getDataFromCity(c, s, "Gold");
 
         }
 

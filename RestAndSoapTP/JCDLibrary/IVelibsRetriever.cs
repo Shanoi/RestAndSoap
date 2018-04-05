@@ -33,7 +33,7 @@ namespace JCDLibrary
         void SubscribeRetrieveFinishedEvent();
 
         [OperationContract]
-        void fetch(string city, string station);
+        void fetch(int duration, string city, string station);
 
     }
 }

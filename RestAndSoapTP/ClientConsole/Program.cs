@@ -24,7 +24,7 @@ namespace ClientConsole
             objClient.SubscribeRetrieveFinishedEvent();
             
             string commands = "help: Display the help\n" +
-                "fidelity [Bronze | Silver | Gold]: choose the level of fidelity for the cache fidelity of the station, or display the different fidelity programs\n" +
+                "sub <duration> <Station name> <City Name> : Subscribe to a station with a duration in seconds (May have unexpected behaviour :))\n" +
                 "cities: Display the list of the available cities\n" +
                 "city <City Name>: Choose the city\n" +
                 "station <Station Name> [<City Name>]: Display information about stations corresponding to the name\n" +
@@ -35,13 +35,7 @@ namespace ClientConsole
             string s = "";
 
             string city = "";
-
-            //List<string> fi = client.getFidelityLevels().ToList<string>();
-
-            objClient.getFidelityLevels();
-
-            objClient.fetch("lyon", "100007");
-
+   
             string fidelityLevel = "Bronze";
 
             while (s != "exit")
@@ -78,19 +72,7 @@ namespace ClientConsole
                             //Console.WriteLine(client.getDataFromCity(city, "", fidelityLevel));
                             objClient.getDataFromCity(city, "", fidelityLevel);
                             break;
-
-                        case "fidelity":
-
-                            /* foreach (string fid in fi)
-                             {
-                                 Console.WriteLine(fid);
-                             }*/
-
-                            objClient.getFidelityLevels();
-
-
-                            break;
-
+                            
                         case "exit":
                             break;
 
@@ -119,19 +101,6 @@ namespace ClientConsole
 
                             break;
 
-                        case "fidelity":
-                           
-                           /* if (fi.Contains(s.Split(' ')[1]))
-                            {
-                                fidelityLevel = s.Split(' ')[1];
-                            }
-                            else
-                            {
-                                Console.WriteLine("Wrong fidelity level\n");
-                            }*/
-                                                        
-                            break;
-
                         default:
                             Console.WriteLine(ERROR_MESSAGE);
                             break;
@@ -149,7 +118,25 @@ namespace ClientConsole
                             //Console.WriteLine(client.getDataFromCity(city, s.Split(' ')[1].Replace('_', ' '), fidelityLevel));
                             objClient.getDataFromCity(city, s.Split(' ')[1].Replace('_', ' '), fidelityLevel);
                             break;
+                   
+                        default:
+                            Console.WriteLine(ERROR_MESSAGE);
+                            break;
 
+                    }
+                }
+                else if (s.Split(' ').Length == 4)
+                {
+                    switch (s.Split(' ')[0])
+                    {
+                        
+                        case "sub":
+
+                            city = s.Split(' ')[3].Replace('_', ' ');
+
+                            objClient.fetch(Int32.Parse(s.Split(' ')[1]), city, s.Split(' ')[2].Replace('_', ' '));
+
+                            break;
 
                         default:
                             Console.WriteLine(ERROR_MESSAGE);
